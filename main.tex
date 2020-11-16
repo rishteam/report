@@ -1,5 +1,3 @@
-% !TEX program = XeLaTeX+MakeIndex+BibTeX
-
 \documentclass[a4paper, 12pt]{report}
 
 %%%%%%%%%%%%
@@ -74,6 +72,11 @@
 \begin{document}
     \maketitle
     \romantableofcontents
+
+    test \cite{Benty20}
+    testB \cite{pakin2020comprehensive}
+
+    \printbibliography
 
     \chapter{Introduction}
 
@@ -491,5 +494,8 @@
         \caption{Special expressions for the label of \texttt{enumerate} environments.}
         \label{tab:enumerate_special_expressions}
     \end{table}
+
+    % \bibliographystyle{unsrt}
+    % \bibliography{sample}
 
 \end{document}
