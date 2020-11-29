@@ -1,0 +1,63 @@
+\chapter{系統說明}
+
+\section{使用技術}
+
+\subsection{使用語言}
+
+使用 C++ 11 作為主要開發語言，使用 msys2 作為套件管理器 \footnote{} ，CMake 建置專案，使用 doxygen 工具將註解轉換 documentation, cppcheck C++ 的靜態程式碼分析器
+
+
+
+\begin{itemize}
+	\item{Slack}
+		\subitem{團隊協作軟體，用於溝通紀錄}
+	\item{Trello}
+		\subitem{看板軟體，用於工作進度管理}
+	\item{git, github}
+		\subitem{版本控制}
+\end{itemize}
+
+TODO 寫多一點
+
+\subsubsection{為何選 C++ 做為開發引擎之語言?}
+
+因為 C++ 讓開發者可以自由掌控記憶體，讓開發者可以精確的控制變數的生命週期，沒有垃圾回收(Garbage Collection)，這對於效能注重的遊戲引擎來說相當重要；比 C 來得高階但效能卻沒損失很多；C++ 歷史悠久且有許多精良的函式庫可以使用。
+
+% https://gamedev.stackexchange.com/questions/38011/why-is-c-used-for-game-engines-how-about-its-future-in-game-engines
+
+\subsubsection{使用函式庫}
+
+\begin{itemize}
+	\item{\href{https://www.sfml-dev.org/}{SFML}}
+		\subitem{一個 C++ 的跨平台用於遊戲、多媒體程式開發的函式庫，於此專案中用於 Input 及窗口操作等}
+
+	\item{OpenGL + \href{https://github.com/Dav1dde/glad}{glad}}
+		\subitem{一個跨平台的 API ，使用 glad 載入器}
+
+	\item{\href{https://github.com/ocornut/imgui}{imgui}}
+		\subitem{一個輕量、快速的 Immediate Mode GUI 函式庫，常在遊戲開發、工具開發等使用，於此專案中用於編輯器的 UI 開發。}
+
+	\item{\href{https://github.com/gabime/spdlog}{spdlog}}
+		\subitem{一個輕量、快速的 Logging 函式庫，於此專案中用於處理除錯訊息。}
+
+	\item{\href{https://github.com/mlabbe/nativefiledialog}{nativefiledialog}}
+		\subitem{小型的 Open File Dialog 函式庫，於此專案中用於處理開啟檔案視窗。}
+
+	\item{\href{https://github.com/juliettef/IconFontCppHeaders}{IconFontCppHeaders}}
+		\subitem{字體的 Helper Headers，於此專案中用於引入自訂字體。}
+
+	\item{\href{https://github.com/fmtlib/fmt}{fmt}}
+		\subitem{補足了 C++ 標準庫缺少的格式化輸出輸入。}
+
+	\item{\href{https://github.com/g-truc/glm}{glm}}
+		\subitem{OpenGL 數學函式庫，於此專案中用於處理向量、投影等相關數學函式。}
+
+	\item{\href{https://github.com/USCiLab/cereal}{cereal}}
+		\subitem{C++ 缺少的序列化函式庫，於此專案中用於序列化儲存資源。}
+
+	\item{\href{https://github.com/google/re2}{re2}}
+		\subitem{來自 Google 的 Regular Expression 函式庫，標準庫的有夠慢(確信。}
+
+	\item{\href{}{}}
+		\subitem{}
+ \end{itemize}
