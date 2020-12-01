@@ -1,0 +1,7 @@
+# 2 DebugMode Non-Batch
+# 3 DebugMode Batch
+# sprites  2     3
+100        1000  1900.1
+1000       167   568.44
+10000      18    82.49
+100000     1     9.32
