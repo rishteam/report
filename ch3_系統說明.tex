@@ -4,7 +4,8 @@
 
 \subsection{使用語言}
 
-使用 C++ 11 作為主要開發語言，使用 msys2 作為套件管理器 \footnote{} ，CMake 建置專案，使用 doxygen 工具將註解轉換 documentation, cppcheck C++ 的靜態程式碼分析器
+使用 C++ 11 作為主要開發語言，使用 msys2 作為套件管理器 \footnote{在 Windows 上，沒有套件管理器會非常痛苦} ，CMake 建置專案，
+使用 doxygen 工具將註解轉換 documentation, cppcheck C++ 的靜態程式碼分析器
 
 \begin{itemize}
 	\item{Slack}
@@ -19,9 +20,8 @@ TODO 寫多一點
 
 \subsubsection{為何選 C++ 做為開發引擎之語言?}
 
-因為 C++ 讓開發者可以自由掌控記憶體，讓開發者可以精確的控制變數的生命週期，沒有垃圾回收(Garbage Collection)，這對於效能注重的遊戲引擎來說相當重要；比 C 來得高階但效能卻沒損失很多；C++ 歷史悠久且有許多精良的函式庫可以使用。
-
-% https://gamedev.stackexchange.com/questions/38011/why-is-c-used-for-game-engines-how-about-its-future-in-game-engines
+因為 C++ 讓開發者可以自由掌控記憶體，讓開發者可以精確的控制變數的生命週期，沒有垃圾回收(Garbage Collection)，這對於效能注重的遊戲引擎來說相當重要；
+比 C 來得高階但效能卻沒損失很多；C++ 歷史悠久且有許多精良的函式庫可以使用。 \cite{WhyCppUsedInGameEngine}
 
 \subsubsection{使用函式庫}
 
