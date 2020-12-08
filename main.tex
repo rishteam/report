@@ -1,3 +1,4 @@
+% =xelatex+makeindex+bibtex
 \documentclass[a4paper, 12pt]{report}
 
 %%%%%%%%%%%%
@@ -80,6 +81,8 @@
 \begin{document}
     \maketitle
     \romantableofcontents
+    \listoffigures
+    \listoftables
 
     \import{./}{ch1_摘要.tex}
     \import{./}{ch2_緒論.tex}
@@ -89,7 +92,6 @@
     \import{./}{ch6_心得.tex}
 
     \printbibliography
-
 
     % \include{sleek.tex}
 
