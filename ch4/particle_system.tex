@@ -79,11 +79,10 @@ struct Particle
 
 \subsubsection{Emitter}
 
-Emitter 是定義 Particle 行為的地方，意思是說，如果我希望我的效果會讓粒子從紫色變黃色，我就要告訴 Emitter 我希望我的起始顏色是紫色，結束顏色是黃色。接著當遊戲循環開始時，Emitter就會根據數據，將他給予到每個 Particle，讓他們模擬。
+Emitter 是定義 Particle 行為的地方，意思是說，如果我希望我的效果會讓粒子從紫色變黃色，我就要告訴 Emitter 我希望我的起始顏色是紫色，結束顏色是黃色。
+接著當遊戲循環開始時，Emitter就會根據數據，將他給予到每個 Particle，讓他們模擬。
 
-有了Emitter，當我們需要產生不同的效果，只需產生多個Emitter，給予不同的參數，就能有多個效果。
-
-Emitter擁有許多與Particle類似的數據。
+有了Emitter，當我們需要產生不同的效果，只需產生多個Emitter，給予不同的參數，就能有多個效果。Emitter擁有許多與Particle類似的數據。
 
 \begin{lstlisting}
 struct ParticleComponent
@@ -178,11 +177,8 @@ Particle System會模擬Particle的物理，以及幫助繪製粒子。
 class ParticleSystem
 {
 public:
-
     void update(Time dt, Emitter& emitter);
-    
     void render(Emitter& emitter);
-
     void init(EmitData& data, Emitter& emitter);
 }
 \end{lstlisting}
@@ -191,14 +187,13 @@ public:
 
 \begin{lstlisting}
 void ParticleSystem::initEmitter(EmitData& data, Emitter& emitter) {
-
     emitter.angleRange = data.angleRange;
     emitter.startSpeed = data.startSpeed;
     emitter.endSpeed = data.endSpeed;
     emitter.startSize = data.startSize;
     emitter.endSize = data.endSize;
     emitter.rotateSpeed = data.rotateSpeed;
-    ...
+    /* ... */
 }
 \end{lstlisting}
 
@@ -206,13 +201,10 @@ Emitter 擁有資料之後，Particle System就能夠開始模擬例子效果了
 
 \begin{lstlisting}
 void ParticleSystem::update(Time dt, Emitter& emitter) {
-
     if (emitter.active) {
-
-        emitter.emissionRate = (int)(emitter.emitNumber + emitter.emitVariance * randFloat(emitter.emitVarianceRand.x, emitter.emitVarianceRand.y));
-
+        emitter.emissionRate = (int)(emitter.emitNumber + 
+                emitter.emitVariance * randFloat(emitter.emitVarianceRand.x, emitter.emitVarianceRand.y));
         for(int i = 0 ; i < emitter.emissionRate ; i++) {
-
             int unusedParticle = firstUnusedParticle(emitter.lastUnusedParticle, emitter.particlePool);
             respawnParticle(emitter.particlePool, unusedParticle);
         }
@@ -226,20 +218,15 @@ void ParticleSystem::update(Time dt, Emitter& emitter) {
 
 \begin{lstlisting}
 uint32_t ParticleSystem::firstUnusedParticle(uint32_t &lastUnusedParticle, vector<Particle>& particlePool) {
-
     for(int i = lastUnusedParticle ; i < particlePool.size() ; i++) {
-
         if(particlePool[i].life <= 0) {
-
             lastUnusedParticle = i;
             return i;
         }
     }
 
     for(int i = 0 ; i < lastUnusedParticle ; i++) {
-
         if(particlePool[i].life <= 0) {
-
             lastUnusedParticle = i;
             return i;
         }
@@ -250,17 +237,14 @@ uint32_t ParticleSystem::firstUnusedParticle(uint32_t &lastUnusedParticle, vecto
 \end{lstlisting}
 
 激活就是將Emitter的數據給予每個Partcle
-
 當每個Particle都擁有了數據以及生命之後，就能來更新他的數據了。
 
 \begin{lstlisting}
-//[...]
+/* .... */
 
 for(int i = 0 ; i < emitter.poolSize ; i++) {
-
     auto &particle = emitter.particles[i];
     if(particle.life > 0.f) {
-
         particle.currentSize = interpolateBetweenRange(particle.startSize, particle.t, particle.endSize);
         particle.currentVel.x = interpolateBetweenRange(particle.startVel.x, particle.t, particle.endVel.x);
         particle.currentVel.y = interpolateBetweenRange(particle.startVel.y, particle.t, particle.endVel.y);
@@ -281,19 +265,17 @@ for(int i = 0 ; i < emitter.poolSize ; i++) {
 }
 \end{lstlisting}
 
-如果那顆粒子是活的，我們就更新他。
-利用插值法更新速度、大小以及顏色。
+如果那顆粒子是活的，我們就更新它。 利用插值法更新速度、大小以及顏色。
 然後根據速度以及這一個 frame 經過的時間更新 Particle 的位置
 
 \subsubsection{Vortex}
 
-Vortex，渦流，類似一種像輪胎般不斷旋轉的空氣，而我們的Particle會被這個旋轉的空氣影響，進而影響行走的路徑。可以想像有個隱形的颱風在螢幕上，而每個直走的Particle會因為經過颱風而往右邊或左邊走。
+Vortex，渦流，類似一種像漩渦般不斷旋轉的空氣，而我們的Particle會被這個旋轉的空氣影響，進而影響行走的路徑。可以想像有個隱形的颱風在螢幕上，而每個直走的Particle會因為經過颱風而往右邊或左邊走。
 
 Particle 會受 Vortex 的位置(pos)、旋轉速度(speed)以及大小(size)影響。
 
 \begin{lstlisting}
 struct Vortex {
-
     glm::vec2 pos = {0.f, 0.f};
     float speed = 0.f;
     float size = 0.f;
@@ -303,15 +285,13 @@ struct Vortex {
 擁有這些數據後，我們更改 Particle System 裡 Particle 的更新方法。
 
 \begin{lstlisting}
-{
-    float dx = particle.pos.x - vortex.pos.x;
-    float dy = particle.pos.y - vortex.pos.y;
-    float vx = -dy * vortex.turbulence.x;
-    float vy = dx * vortex.turbulence.y;
-    factor_ = 1.0f/ (1.0f + (dx*dx + dy*dy)/vortex.currentSize*0.1);
+float dx = particle.pos.x - vortex.pos.x;
+float dy = particle.pos.y - vortex.pos.y;
+float vx = -dy * vortex.turbulence.x;
+float vy = dx * vortex.turbulence.y;
+factor_ = 1.0f/ (1.0f + (dx*dx + dy*dy)/vortex.currentSize*0.1);
 
-    particle.pos.x += (vx - particle.currentVel.x) * factor_ + particle.currentVel.x * dt;
-}
+particle.pos.x += (vx - particle.currentVel.x) * factor_ + particle.currentVel.x * dt;
 particle.pos.y += (vy - particle.currentVel.y) * factor_ + particle.currentVel.y * dt;
 \end{lstlisting}
 
@@ -320,11 +300,9 @@ particle.pos.y += (vy - particle.currentVel.y) * factor_ + particle.currentVel.y
 動態的 Vortex 影響 Particle 的方法:
 
 \begin{lstlisting}
-{
-    factor_ = 1.0f/ (1.0f + (dx*dx + dy*dy)/(vortex.currentSize*0.1));
-    float lifeFactor = vortex.life/emitter.vortexMaxParticleLife;
-    factor_ *= (1-lifeFactor)*lifeFactor*4;
-}
+factor_ = 1.0f / (1.0f + (dx*dx + dy*dy) / (vortex.currentSize * 0.1));
+float lifeFactor = vortex.life / emitter.vortexMaxParticleLife;
+factor_ *= (1-lifeFactor) * lifeFactor * 4;
 \end{lstlisting}
 
 Vortex 隨著時間移動，也會隨著時間消失，而在 Vortex 快死亡時對 Partcle 的影響逐漸減少。
@@ -339,12 +317,13 @@ Vortex 隨著時間移動，也會隨著時間消失，而在 Vortex 快死亡�
         \includegraphics[width=\linewidth]{./resources/particleSystem/vortex.png}
         \caption{Vortex}
     \end{subfigure}
-\caption{模擬}
+\caption{Particle System 模擬}
 \label{fig:simulate}
 \end{figure}
 
 \subsubsection{結論}
 
-目前這個Particle System能夠做出像是煙霧、煙火、火焰、雪等效果，各種其他特效也能透過條參數來獲得效果，且還能控制排放的間隔，每多少秒才排放一次。未來希望能夠新增更多的particle排放的曲線，不只能夠條參數，能夠有個函數圖形讓使用者們直接選取中意的曲獻，來模擬particle的路徑。
+目前這個Particle System能夠做出像是煙霧、煙火、火焰、雪等效果，各種其他特效也能透過條參數來獲得效果，且還能控制排放的間隔，每多少秒才排放一次。
+未來希望能夠新增更多的 particle 排放的曲線，不只能夠調整參數，能夠有個函數圖形讓使用者們直接選取中意的曲線，來模擬particle的路徑。
 
 \newpage

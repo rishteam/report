@@ -50,7 +50,7 @@ struct QuadVertex
 };
 \end{lstlisting}
 
-四個頂點構成一個矩形，所以接著宣告矩形的 class，重載小於運算子是為了要能排序，這在要開啟深度測試時很重要。 \footnote{TODO}
+四個頂點構成一個矩形，所以接著宣告矩形的 class，重載小於運算子是為了要能排序，這在要開啟深度測試時很重要。 \footnote{由於 Depth Test 是為了去除掉覆蓋的問題，也就是 z 比較大的物體會蓋過 z 比較小的物體，因此在渲染時便不用渲染z 比較小的物體，但在開啟 Blend Mode 時，必須照 z 軸由小畫到大，透明的物體才會是正常的。}
 
 \begin{lstlisting}
 struct QuadShape
@@ -148,7 +148,7 @@ init() 負責初始化 Renderer 的狀態以及準備 VBO, IBO 和 Shader 的初
 \label{tab:abc}
 \end{table}
 
-% 說明文字說明文字說明文字說明文字說明文字說明文字
+可以發現到:加入 Batch Rendering 後，Renderer 的效率獲得了巨大的提升，在小規模數量的 Sprites 時，FPS 的增加相當可觀；但數量一大起來時，增加的幅度就變小了，由此可知在數量大時渲染瓶頸在其他地方。
 
 \begin{figure}[h]
     \begin{subfigure}{0.5\textwidth}
@@ -172,12 +172,12 @@ init() 負責初始化 Renderer 的狀態以及準備 VBO, IBO 和 Shader 的初
 \includegraphics[width=\textwidth]{./resources/cc.png} 
 
 \begin{itemize}
-    \item{將 Renderer 變成 Multi-thread 架構}
-        \SubItem{由於 OpenGL 在設計當初並沒有考慮到多線程，因此如果要在 OpenGL 使用多線程架構則要用 C++ 模擬，相較於其他現代的 API ，就沒有此限制(Vulkan, DirectX)。}
-        \SubItem{將程式分成 Main Thread 與 Rendering Thread}
-            \SubSubItem{Main Thread 主要負責遊戲循環，如果要畫東西時，會將 Render 資訊打包成一個 Task，接著加到共用的 Rendering Queue 中(Message Queue)。}
-            \SubSubItem{Rendering Thread 負責消化 Rendering Queue 中的 Task ，向 GPU 發起 Draw Call。}
-        \SubItem{在原本單線程的 Renderer 中，主要的瓶頸在 Submit Draw Call，繪製時必須等待繪製好了(Blocking)，改成多線程則可以解決這個問題。}
+\item{將 Renderer 變成 Multi-thread 架構}
+    \SubItem{由於 OpenGL 在設計當初並沒有考慮到多線程，因此如果要在 OpenGL 使用多線程架構則要用 C++ 模擬，相較於其他現代的 API ，就沒有此限制(Vulkan, DirectX)。}
+    \SubItem{將程式分成 Main Thread 與 Rendering Thread}
+        \SubSubItem{Main Thread 主要負責遊戲循環，如果要畫東西時，會將 Render 資訊打包成一個 Task，接著加到共用的 Rendering Queue 中(Message Queue)。}
+        \SubSubItem{Rendering Thread 負責消化 Rendering Queue 中的 Task ，向 GPU 發起 Draw Call。}
+    \SubItem{在原本單線程的 Renderer 中，主要的瓶頸在 Submit Draw Call，繪製時必須等待繪製好了(Blocking)，改成多線程則可以解決這個問題。}
 \end{itemize}
 
 \newpage

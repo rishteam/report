@@ -2,18 +2,29 @@
 \label{sub:Scriptable Entity}
 
 \subsubsection{前言}
-RishEngine 支援開發者使用引擎提供之 API 撰寫遊戲邏輯，並使用編輯器將寫好的邏輯綁定在多個遊戲物件上，構成可以互動的遊戲場景(Scene)。
 
-\subsubsection{實作}
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=0.6\textwidth]{./resources/scriptable/implement.png}
+    \includegraphics[width=0.6\textwidth]{./resources/scriptable/view_a.png}
     \end{center}
-\caption{展示圖}
+\caption{ScriptableEntity 介面圖}
 \label{fig:implement}
 \end{figure}
 
-原本引擎在 ECS 中的 Entity 是代表遊戲物件，而 ScriptableEntity 代表被 Script 所操控的 Entity。
+RishEngine 支援開發者使用引擎提供之 API 撰寫遊戲邏輯，並使用編輯器將寫好的邏輯綁定在多個遊戲物件上，構成可以互動的遊戲場景(Scene)。
+
+\subsubsection{實作}
+
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=\textwidth]{./resources/scriptable/implement.png}
+    \end{center}
+\caption{ScriptableEntity 架構圖}
+\label{fig:implement}
+\end{figure}
+
+原本引擎在 ECS 中的 Entity 是代表遊戲物件，而 ScriptableEntity 代表被 Script 所操控的 Entity。而 NativeScriptComponent 擁有 ScriptableEntity 類，接著
+Script 得以操作自身或是其他的 Entity 的 Component。
 
 \begin{lstlisting}
 class ScriptableEntity
@@ -41,7 +52,8 @@ private:
 };
 \end{lstlisting}
 
-如果要實作一個 Script 時，要繼承 ScriptableEntity 並實作其提供的介面，onCreate() 會在 Script 建立時被執行、onUpdate() 每 frame 會執行一次、onImGuiRender() 則是用於 Editor 時可以調參數、onDestroy() 則是在 Script 被銷毀前會執行。
+如果要實作一個 Script 時，要繼承 ScriptableEntity 並實作其提供的介面，\lstinline{onCreate()} 會在 Script 建立時被執行、\lstinline{onUpdate()} 每 frame 會執行一次、\lstinline{onImGuiRender()}
+則是用於 Editor 時可以調參數、\lstinline{onDestroy()} 則是在 Script 被銷毀前會執行。
 
 \begin{lstlisting}
 class ExampleScript : public ScriptableEntity
@@ -64,11 +76,13 @@ public:
 };
 \end{lstlisting}
 
-但因為我們現在引擎是採用 ECS 架構，所以還要有一個 Component 讓 Entity 擁有。定義 NativeScriptComponent 有三個資料: instance 是 ScriptableEntity 也就是實際邏輯的 Object、scriptName 是 Script 的名稱，預設是 rl::EmptyScript、valid 則代表該 Script 是否初始化。
+但因為我們現在引擎是採用 ECS 架構，所以還要有一個 Component 讓 Entity 擁有。定義 NativeScriptComponent 有三個資料: 
+\lstinline{instance} 是 ScriptableEntity 也就是實際邏輯的 Object、\lstinline{scriptName} 是 Script 的名稱，預設是 \lstinline{rl::EmptyScript}、\lstinline{valid} 則代表該 Script 是否初始化。
 
-\footnote{entt::type\_info<T>::name\(\) 是我們使用的一個 ECS 函式庫提供的 RTTI 的函式，可以拿到一個 Type 的名稱}
+\footnote{ \lstinline{entt::type_info<T>::name()} 是我們使用的一個 ECS 函式庫提供的 RTTI 的函式，可以拿到一個 Type 的名稱}
 
-提供了兩個函式:bind\(\) 和 unbind\(\) 分別是綁定和解除綁定。在 bind\(\) 時會初始化參數和指定正確的 entity，因為 Script 內可能會去拿當前 Entity 的其他 Component \(例如位置、旋轉、速度等\)，所以必須在初始化時綁定好；而 unbind\(\) 就是刪除 ScriptableEntity 。
+提供了兩個函式:\lstinline{bind()} 和 \lstinline{unbind()} 分別是綁定和解除綁定。在 \lstinline{bind()} 時會初始化參數和指定正確的 Entity，
+因為 Script 內可能會去拿當前 Entity 的其他 Component \(例如位置、旋轉、速度等\)，所以必須在初始化時綁定好；而 \lstinline{unbind()} 就是刪除 ScriptableEntity。
 
 \begin{lstlisting}
 struct NativeScriptComponent
@@ -113,15 +127,23 @@ ent.addComponent<NativeScriptComponent>().bind<ExampleScript>();
 
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=0.6\textwidth]{./resources/scriptable/process.png}
+    \includegraphics[width=\textwidth]{./resources/scriptable/process.png}
     \end{center}
-\caption{流程圖}
-\label{fig:process}
+\caption{NativeScript 流程圖}
+\label{fig:RishEngineNativeScript}
 \end{figure}
 
-在引擎的流程中，在 onScenePlay\(\) 時，會初始化 Scene ，以及所有 System 其中就包含了 NativeScriptSystem 其中會呼叫 NativeScript 的 OnCreate() 初始化該 Script ，接著每次 loop 會呼叫 OnUpdate() 執行 Script 的邏輯。在要 Script 要結束時（主動結束或是被動結束）會呼叫 OnDestroy() 來清理該 Script。
+在引擎的流程中，在 \lstinline{onScenePlay()} 時，會初始化 Scene ，以及所有 System 其中就包含了 NativeScriptSystem 其中會呼叫 NativeScript 的 \lstinline{OnCreate()} 初始化該 Script
+，接著每次 loop 會呼叫 \lstinline{OnUpdate()} 執行 Script 的邏輯。在要 Script 要結束時（主動結束或是被動結束）會呼叫 \lstinline{OnDestroy()} 來清理該 Script。
 
-在 RishEditor 中，可以使用 UI 替一個遊戲物件\(Entity\)加上 NativeScriptComponent
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{./resources/scriptable/selecte_nsc.png}
+    \end{center}
+\caption{加入 NativeScript 示意圖}
+\end{figure}
+
+在 RishEditor 中，可以使用 UI 替一個遊戲物件\(Entity\)加上 NativeScriptComponent。
 
 \subsubsection{Workflow}
 
@@ -142,15 +164,34 @@ public:
 }
 \end{lstlisting}
 
+接著在 \lstinline{ScriptableManager::Init()} 註冊，註冊後的 Script 會出現在 Editor 中:
+
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{./resources/scriptable/nsc_veiw.png}
+    \end{center}
+\caption{NativeScript 介面圖}
+\label{fig:RishEngineNativeScript}
+\end{figure}
+
+\begin{lstlisting}
+void ScriptableManager::Init()
+{
+    /* Other Scripts */
+    ScriptableManager::Register<PlayerController>();
+}   
+\end{lstlisting}
+
+重新編譯並打開 Editor 後可以在 NativeScriptComponent 中選擇剛剛撰寫的 Script 名稱，在 Script 中的 \lstinline{onImGuiRender()} 可以撰寫 UI 的邏輯(用於 Debug、挑整參數)，便會顯示在此處。
+
 \subsubsection{未來展望}
 
 \begin{itemize}
 \item{使用 Scripting Language}
     \SubItem{目前 RishEngine 直接使用 C++ 作為 Script 的語言，優點是可以直接使用引擎的 C++ API，但缺點就是編譯非常花時間}
     \SubItem{可以使用開源的專案，接著只要提供該語言的引擎 API 之後，便可以用該腳本語言撰寫遊戲邏輯}
-        \SubSubItem{例如 mono\(C\#\)、sol2\(lua\)、pybind11\(python\) 綁定腳本語言}
+        \SubSubItem{例如 \lstinline{mono(C#)}、\lstinline{sol2(lua)}、\lstinline{pybind11(python)} 綁定腳本語言}
     \SubItem{動態語言雖然效能沒有編譯語言好，但動態語言不用等待編譯，這對需要快速迭代的遊戲來說至關重要}
 \end{itemize}
-
 
 \newpage
