@@ -130,22 +130,46 @@ init() 負責初始化 Renderer 的狀態以及準備 VBO, IBO 和 Shader 的初
 
 \subsubsection{結論}
 
-加入 Batch Rendering 後，RishEngine 的 Renderer 獲得了顯著的提升
+加入 Batch Rendering 後，RishEngine 的 Renderer 獲得了顯著的提升:
 
-% TODO
-% \begin{table}[h]
-% \centering
-%     \begin{tabular}{l | l | l}
-%     A & B & C \\
-%     \hline
-%     1 & 2 & 3 \\
-%     4 & 5 & 6
-%     \end{tabular}
-% \caption{very basic table}
-% \label{tab:abc}
-% \end{table}
+\begin{table}[h]
+\centering
+    \begin{tabular}{@{} *{5}{c} @{}}
+    \headercell{Number of \\ Sprites} & \multicolumn{4}{c@{}}{Modes}\\
+    \cmidrule(l){2-5}
+    & Debug Non-batch & Release Non-batch & Debug Batch & Release Batch    \\ 
+    \midrule
+    100    & 1000 &  1055   &  1900 &  2789 \\
+    1000   & 167  &  158    &  568  &  1379 \\
+    10000  & 18   &  17     &  82   &  247  \\
+    100000 & < 1    &  < 1  &  9    &  28   \\
+    \end{tabular}
+\caption{不同 Rendering 方法下 FPS 差別}
+\label{tab:abc}
+\end{table}
+
+說明文字說明文字說明文字說明文字說明文字說明文字
+
+\begin{figure}[h]
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=0.9\linewidth, height=5cm]{./resources/batch_compare.png} 
+        \caption{不同 Rendering 方法}
+        \label{fig:subim1}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=0.9\linewidth, height=5cm]{./resources/max_index.png}
+        \caption{不同 Max Index}
+        \label{fig:subim2}
+    \end{subfigure}
+\caption{不同 Rendering 方法效能比較}
+\label{fig:image2}
+\end{figure}
+
+說明文字說明文字說明文字說明文字說明文字說明文字說明文字
 
 \subsubsection{未來展望}
+
+\includegraphics[width=\textwidth]{./resources/cc.png} 
 
 \begin{itemize}
     \item{將 Renderer 變成 Multi-thread 架構}

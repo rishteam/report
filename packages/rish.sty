@@ -1,5 +1,8 @@
 \ProvidesPackage{rish}
 
+\RequirePackage{booktabs}
+\RequirePackage{subcaption}
+
 % https://tex.stackexchange.com/questions/84172/possible-to-create-bullets-for-subitems-using-itemize-without-a-nested-list
 \newcommand{\SubItem}[1]{
     {\setlength\itemindent{15pt} \item[--] #1}
@@ -12,3 +15,6 @@
 \newcommand{\SubSubSubItem}[1]{
     {\setlength\itemindent{45pt} \item[--] #1}
 }
+
+\newcommand\headercell[1]{%
+   \smash[b]{\begin{tabular}[t]{@{}c@{}} #1 \end{tabular}}}
