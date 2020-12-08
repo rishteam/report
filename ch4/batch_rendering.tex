@@ -172,12 +172,12 @@ init() 負責初始化 Renderer 的狀態以及準備 VBO, IBO 和 Shader 的初
 \includegraphics[width=\textwidth]{./resources/cc.png} 
 
 \begin{itemize}
-    \item{將 Renderer 變成 Multi-thread 架構}
-        \SubItem{由於 OpenGL 在設計當初並沒有考慮到多線程，因此如果要在 OpenGL 使用多線程架構則要用 C++ 模擬，相較於其他現代的 API ，就沒有此限制(Vulkan, DirectX)。}
-        \SubItem{將程式分成 Main Thread 與 Rendering Thread}
-            \SubSubItem{Main Thread 主要負責遊戲循環，如果要畫東西時，會將 Render 資訊打包成一個 Task，接著加到共用的 Rendering Queue 中(Message Queue)。}
-            \SubSubItem{Rendering Thread 負責消化 Rendering Queue 中的 Task ，向 GPU 發起 Draw Call。}
-        \SubItem{在原本單線程的 Renderer 中，主要的瓶頸在 Submit Draw Call，繪製時必須等待繪製好了(Blocking)，改成多線程則可以解決這個問題。}
+\item{將 Renderer 變成 Multi-thread 架構}
+    \SubItem{由於 OpenGL 在設計當初並沒有考慮到多線程，因此如果要在 OpenGL 使用多線程架構則要用 C++ 模擬，相較於其他現代的 API ，就沒有此限制(Vulkan, DirectX)。}
+    \SubItem{將程式分成 Main Thread 與 Rendering Thread}
+        \SubSubItem{Main Thread 主要負責遊戲循環，如果要畫東西時，會將 Render 資訊打包成一個 Task，接著加到共用的 Rendering Queue 中(Message Queue)。}
+        \SubSubItem{Rendering Thread 負責消化 Rendering Queue 中的 Task ，向 GPU 發起 Draw Call。}
+    \SubItem{在原本單線程的 Renderer 中，主要的瓶頸在 Submit Draw Call，繪製時必須等待繪製好了(Blocking)，改成多線程則可以解決這個問題。}
 \end{itemize}
 
 \newpage
