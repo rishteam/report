@@ -64,11 +64,11 @@ public:
 };
 \end{lstlisting}
 
-但因為我們現在引擎是採用 ECS 架構，所以還要有一個 Component 讓 Entity 擁有。定義 NativeScriptComponent 有三個資料\: instance 是 ScriptableEntity 也就是實際邏輯的 Object、scriptName 是 Script 的名稱，預設是 rl\:\:EmptyScript、valid 則代表該 Script 是否初始化。
+但因為我們現在引擎是採用 ECS 架構，所以還要有一個 Component 讓 Entity 擁有。定義 NativeScriptComponent 有三個資料: instance 是 ScriptableEntity 也就是實際邏輯的 Object、scriptName 是 Script 的名稱，預設是 rl::EmptyScript、valid 則代表該 Script 是否初始化。
 
-% \footnote{entt\:\:type\_info\<T\>\:\:name\(\) 是我們使用的一個 ECS 函式庫提供的 RTTI 的函式，可以拿到一個 Type 的名稱}
+\footnote{entt::type\_info<T>::name\(\) 是我們使用的一個 ECS 函式庫提供的 RTTI 的函式，可以拿到一個 Type 的名稱}
 
-% 提供了兩個函式\:bind\(\) 和 unbind\(\) 分別是綁定和解除綁定。在 bind\(\) 時會初始化參數和指定正確的 entity，因為 Script 內可能會去拿當前 Entity 的其他 Component \(例如位置、旋轉、速度等\)，所以必須在初始化時綁定好；而 unbind\(\) 就是刪除 ScriptableEntity 。
+提供了兩個函式:bind\(\) 和 unbind\(\) 分別是綁定和解除綁定。在 bind\(\) 時會初始化參數和指定正確的 entity，因為 Script 內可能會去拿當前 Entity 的其他 Component \(例如位置、旋轉、速度等\)，所以必須在初始化時綁定好；而 unbind\(\) 就是刪除 ScriptableEntity 。
 
 \begin{lstlisting}
 struct NativeScriptComponent
@@ -148,7 +148,7 @@ public:
 \item{使用 Scripting Language}
     \SubItem{目前 RishEngine 直接使用 C++ 作為 Script 的語言，優點是可以直接使用引擎的 C++ API，但缺點就是編譯非常花時間}
     \SubItem{可以使用開源的專案，接著只要提供該語言的引擎 API 之後，便可以用該腳本語言撰寫遊戲邏輯}
-        % \SubSubItem{例如 mono\(C#\)\、sol2\(lua\)\、pybind11\(python\) 綁定腳本語言}
+        \SubSubItem{例如 mono\(C\#\)、sol2\(lua\)、pybind11\(python\) 綁定腳本語言}
     \SubItem{動態語言雖然效能沒有編譯語言好，但動態語言不用等待編譯，這對需要快速迭代的遊戲來說至關重要}
 \end{itemize}
 

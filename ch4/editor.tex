@@ -116,7 +116,7 @@
 
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=0.6\textwidth]{./resources/editor/toolbar.png}
+    \includegraphics[width=0.5\textwidth]{./resources/editor/toolbar.png}
     \end{center}
 \caption{工具欄介面}
 \label{fig:ToolBar}
@@ -144,6 +144,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{場景視窗 Scene View}
 
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=0.6\linewidth]{./resources/editor/sceneView.png}
+    \end{center}
+\caption{Scene View}
+\label{sceneView}
+\end{figure}
+
 \begin{itemize}
 \item{顯示所創建的Entity}
     \SubItem{滑鼠左鍵點選或圈選Entity，並根據Gizmo的模式對其進行相對應的操作}
@@ -158,45 +166,37 @@
         \SubSubItem{`Esc` 取消選取Entity }   
 \end{itemize}
 
-\begin{figure}[h]
-    \begin{center}
-    \includegraphics[width=\linewidth]{./resources/editor/sceneView.png}
-    \end{center}
-\caption{Scene View}
-\label{sceneView}
-\end{figure}
-
 \begin{itemize}
 \item{Gizmo}
     \SubItem{可讓使用者直觀的對 Entity 的大小與位置進行調整}
     \SubItem{移動}
-        \SubItem{滑鼠按壓中間黃色區塊拖曳Entity移動位置}
-        \SubItem{按壓藍色箭頭限定水平移動}
-        \SubItem{按壓紅色箭頭限定垂直移動}
+        \SubSubItem{滑鼠按壓中間黃色區塊拖曳Entity移動位置}
+        \SubSubItem{按壓藍色箭頭限定水平移動}
+        \SubSubItem{按壓紅色箭頭限定垂直移動}
     \SubItem{拉伸}
-        \SubItem{在Entity上下左右與角落處共八個區塊}
-        \SubItem{按壓並拖曳各個區塊皆可改變 Entity 的大小}
+        \SubSubItem{在Entity上下左右與角落處共八個區塊}
+        \SubSubItem{按壓並拖曳各個區塊皆可改變 Entity 的大小}
     \SubItem{縮放}
-        \SubItem{對於Entity的長與寬從中心延伸出紅線與藍線}
-        \SubItem{在尾端有黃色區塊可按壓拖曳改變Entity的長與寬}
+        \SubSubItem{對於Entity的長與寬從中心延伸出紅線與藍線}
+        \SubSubItem{在尾端有黃色區塊可按壓拖曳改變Entity的長與寬}
     \SubItem{旋轉}
-        \SubItem{可將Entity進行旋轉，會有一紅線表示現Entity的旋轉角度}
+        \SubSubItem{可將Entity進行旋轉，會有一紅線表示現Entity的旋轉角度}
 \end{itemize}
 
 \begin{figure}[h]
-    \begin{subfigure}[b]{0.25\linewidth}
+    \begin{subfigure}[h]{0.2\linewidth}
         \includegraphics[width=\linewidth]{./resources/editor/gizmo_a.png} 
         \caption{移動模式}
     \end{subfigure}
-    \begin{subfigure}[b]{0.25\linewidth}
+    \begin{subfigure}[h]{0.2\linewidth}
         \includegraphics[width=\linewidth]{./resources/editor/gizmo_b.png}
         \caption{拉伸模式}
     \end{subfigure}
-    \begin{subfigure}[b]{0.25\linewidth}
+    \begin{subfigure}[h]{0.2\linewidth}
         \includegraphics[width=\linewidth]{./resources/editor/gizmo_c.png}
         \caption{縮放模式}
     \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
+    \begin{subfigure}[h]{0.2\linewidth}
         \includegraphics[width=\linewidth]{./resources/editor/gizmo_d.png}
         \caption{旋轉模式}
     \end{subfigure}
@@ -207,15 +207,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{遊戲視窗 Game View}
 
+在測試期間將會顯示標示為primary的CameraComponent的視角並運行各個Component的動作
+
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=\linewidth]{./resources/editor/sceneView.png}
+    \includegraphics[width=0.6\linewidth]{./resources/editor/sceneView.png}
     \end{center}
 \caption{Game View}
 \label{gameView}
 \end{figure}
-
-在測試期間將會顯示標示為primary的CameraComponent的視角並運行各個Component的動作
 
 % \begin{figure}[h]
 %     \begin{subfigure}[b]{0.5\linewidth}
@@ -236,7 +236,7 @@
 
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=\textwidth]{./resources/editor/logger.png}
+    \includegraphics[width=0.8\textwidth]{./resources/editor/logger.png}
     \end{center}
 \caption{工具欄介面}
 \end{figure}
@@ -254,7 +254,7 @@
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=\textwidth]{./resources/editor/statusbar.png}
+        \includegraphics[width=0.8\textwidth]{./resources/editor/statusbar.png}
     \end{center}
 \caption{Status Bar}
 \end{figure}
