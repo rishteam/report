@@ -1,24 +1,23 @@
 \subsection{Entity Component System} % (fold)
 \label{sub:Entity Component System}
-TODO
-% subsectionEntity Component System (end)
 
 \subsubsection{ECS 是甚麼}
 遊戲的本質其實就是大量物件(Entity)的行為以及它們之間的交互(Manager)。但顯然遊戲裡的物件不會只有少少幾個。隨著物件邏輯的增加，我們會將相同邏輯的部分進行拆分，由繁化簡，而拆分的方法有很多種。
 
 \subsubsection{繼承}
 
-最直接的寫法就是繼承，當我們的實體需要哪些邏輯的部分，我們就繼承那個部分。例如遊戲中地圖上有許多物品，這些物品(Item)分成裝飾和物件(Prop)，裝飾是地圖上沒有物理、可以看見的實體；物件是可以互動、可以看見的實體；而地圖會有區域(Zone)，切割地圖的區域和作為觸發(Trigger)使用。
-所有的遊戲物件都繼承自 `GameObject` ，裏頭包含了位置等每個遊戲物體都有的資訊，`Zone` 內部實作碰撞，`Prop` 繼承自 `Zone` 實作了渲染，`Decoration` 也實作了渲染。可以發現到 `Prop` 跟 `Decoration` 只差在一個有碰撞，另一個沒有。如果我們嘗試將 `Prop` 改成繼承自 `Zone` 與 `Decoration` 則會導致菱形繼承，而這不是我們想要的。因此使用繼承並不能很好得解決這個問題。
+最直接的寫法就是繼承，當我們的實體需要哪些邏輯的部分，我們就繼承那個部分。例如遊戲中地圖上有許多物品，這些物品(Item)分成裝飾和物件(Prop)，裝飾是地圖上沒有物理、可以看見的實體；
+物件是可以互動、可以看見的實體；而地圖會有區域(Zone)，切割地圖的區域和作為觸發(Trigger)使用。
+所有的遊戲物件都繼承自 GameObject ，裏頭包含了位置等每個遊戲物體都有的資訊，Zone 內部實作碰撞，Prop 繼承自 Zone 實作了渲染，Decoration 也實作了渲染。
+可以發現到 Prop 跟 Decoration 只差在一個有碰撞，另一個沒有。如果我們嘗試將 Prop 改成繼承自 Zone 與 Decoration 則會導致菱形繼承，而這不是我們想要的。因此使用繼承並不能很好得解決這個問題。
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{./resources/ecs/inherit.png}
+        \includegraphics[width=0.65\textwidth]{./resources/ecs/inherit.png}
     \end{center}
-\caption{繼承圖，取自 Game Programming Patterns}
+\caption*{繼承圖，取自 Game Programming Patterns}
 \label{fig:inherit}
 \end{figure}
-
 
 \subsubsection{組件\(Component Pattern\)}
 
@@ -31,36 +30,29 @@ TODO
 
 \begin{lstlisting}
 class Entity {
-
 public:
-
     void update() {
-    
         physis->update();
         transform->update();
         graphic->update();
     }
-
 private:
-
-    Physis* physis;
+    Physis* physics;
     Transform* transform;
     Graphic* graphic;
 };
 
-GameLoop() {
-
-    while(running) {
-    
-        for(int i = 0 ; i < MAX_ENTITES ; i++)
-            entityList->update();
-    }
+/* In Game loop when it need update */
+while(running) {
+    for(int i = 0 ; i < MAX_ENTITES ; i++)
+        entityList->update();
 }
 \end{lstlisting}
 
-組件雖好，但這種方法對緩存不友好，CPU在抓取資料時會一次抓取一組資料進行處裡，稱為 `cache line`，每當CPU處理完當前任務，會先從 `cache line` 尋找下個任務，如果找到，就不再需要去記憶體裡面找下個任務。
-我們的遊戲存取了每個實體的指標，而實體又儲存了每個組件的指標。每當要更新實體，我們得去遍歷他，又因為存取的是指標，因此會造成 `cache miss`，浪費寶貴的時間。每個實體又會更新每個組件，組件存的也是指標，又一次的`cache miss`。
-一個遊戲注重的，除了遊戲本身好不好玩，另外一個就是效能了，`Entity Component System` 解決了這個問題。
+組件雖好，但這種方法對緩存不友好，CPU在抓取資料時會一次抓取一組資料進行處裡，稱為 \textbf{cache line}，每當CPU處理完當前任務，會先從 cache line 尋找下個任務，如果找到，就不再需要去記憶體裡面找下個任務。
+我們的遊戲存取了每個實體的指標，而實體又儲存了每個組件的指標。每當要更新實體，我們得去遍歷他，又因為存取的是指標，因此會造成 \textbf{cache miss}，浪費寶貴的時間。每個實體又會更新每個組件，組件存的也是指標，
+又一次的 cache miss。
+一個遊戲注重的，除了遊戲本身好不好玩，另外一個就是效能了，\textbf{Entity Component System} 解決了這個問題。
 
 \begin{figure}[h]
     \begin{center}
@@ -72,20 +64,20 @@ GameLoop() {
 
 \subsubsection{Entity Component System}
 
-$Entity Component System$，簡稱$ECS$，這裡是指我們會有3個東西。$Entity$、 $Component$ 以及 $System$。
+\textbf{Entity Component System}，簡稱 ECS ，這裡是指我們會有3個東西。Entity、 Component 以及 System。
 
-$ECS$ 與 $Component Pattern$ 不同的地方在於，$ECS$ 的 $Component$ 不再擁有任何的邏輯，$Component$ 所擁有的僅僅是 $Data$，而邏輯的部分全部移駕到對應的 $System$。這樣的好處是，$System$ 可以自己決定要操縱哪些$Data$。
+ECS 與 Component Pattern 不同的地方在於，ECS 的 Component 不再擁有任何的邏輯，Component 所擁有的僅僅是 Data，而邏輯的部分全部移駕到對應的 System。這樣的好處是，System 可以自己決定要操縱哪些 Data。
 
 \begin{itemize}
-    \item{特徵}
-        \SubItem{System 是唯一擁有邏輯的部分}
-        \SubItem{Component 只擁有 Data}
-        \SubItem{Entity 是多個 Component 的橋樑，用於表示這些 Component 是屬於這個 Entity 的。一般來說，Entity 僅僅只是一個 int}
-    \item{好處} 
-        \SubItem{由於 Data 被拆散了，不容易出現讀入整個對象卻只使用其中一個屬性的情況，有利於cache}
-        \SubItem{狀態和邏輯分離，適合同步邏輯}
-        \SubItem{所有同樣的 Component ，我們使用緊密的數組來儲存，因此我們能批量的連續進行處裡，這在理想的情況能夠大量減少 cache miss}
-        \SubItem{由於 Component 只剩下 Data ，我們能夠很好的序列化}
+\item{特徵}
+    \SubItem{System 是唯一擁有邏輯的部分}
+    \SubItem{Component 只擁有 Data}
+    \SubItem{Entity 是多個 Component 的橋樑，用於表示這些 Component 是屬於這個 Entity 的。一般來說，Entity 僅僅只是一個 int}
+\item{好處} 
+    \SubItem{由於 Data 被拆散了，不容易出現讀入整個對象卻只使用其中一個屬性的情況，有利於cache}
+    \SubItem{狀態和邏輯分離，適合同步邏輯}
+    \SubItem{所有同樣的 Component ，我們使用緊密的數組來儲存，因此我們能批量的連續進行處裡，這在理想的情況能夠大量減少 cache miss}
+    \SubItem{由於 Component 只剩下 Data ，我們能夠很好的序列化}
 \end{itemize}
 
 \begin{figure}[h]
@@ -119,15 +111,14 @@ const Entity MAX_ENTITES = 10000;
 Component只會存著需要的Data，不會擁有任何的邏輯
 
 \begin{lstlisting}
+// 角色的位置資訊
 struct Transform {
-
     vec3 position;
     vec3 size;
     float rotate;
 };
-
+// 材質
 struct Graphic {
-
     Texture texture_;
 }
 \end{lstlisting}
@@ -140,10 +131,9 @@ const ComponentType MAX_COMPONENT = 32;
 \end{lstlisting}
 
 我們希望夠能追蹤這個Entity擁有哪些Component，同時也必須追蹤這個System會有哪些Component參與其中。
-
 為了方便追蹤，我們會給Entity及System一個Signature，上面登記著它擁有了哪些Component。
 
-std::bitset很適合達到我們的要求，前面我們幫每種Component訂了ID，意思是指要此物件或系統擁有這物件，就只要設定那個ID的bit。
+\lstinline{std::bitset} 很適合達到我們的要求，前面我們幫每種Component訂了ID，意思是指要此物件或系統擁有這物件，就只要設定那個ID的bit。
 
 舉個例子，Transform是0，Graphic是1，RigidBody是2，
 擁有Transform和RigidBody的物件，它的Signature會被設定成0b101(bit 0, 2會被設定)。
@@ -155,16 +145,12 @@ Entity Manager是負責分配及追蹤Entity，記錄著哪些Entity ID已經被
 
 \begin{lstlisting}
 class EntityManager {
-
 public:	
-
     Entity createEntity();
     void destroyEntity(Entity entity);
     void setSignature(Entity entity, Signature signature);
     Signature getSignature(Entity entity);
-
 private: 
-
     // Array of signatures where the index is the Entity
     std::array<Signature, MAX_ENTITIES> Signatures_;
     // ALL Unused Entities
@@ -206,16 +192,15 @@ Signature EntityManager::getSignature(Entity entity) {
 }
 \end{lstlisting}
 
-
-
 \paragraph{Component Array}
 在這裡，我們必須實作一種簡單的陣列，但必須永遠是連續的，代表說它是不會有空洞出現的。
 因為我們的Entity只是ID，要獲得跟Entity相關的Component是很簡單的，但是當Entity被銷毀時，對於陣列來說此Index(Entity ID)已經失效，我們不希望在遍歷陣列時出現失效的Entity。
+
 但是事實上當Entity被銷毀時，它仍然是存在在陣列裡的。
 在這裡，我們維護了兩個map，存著Entity ID與Index之間的關係。當要使用Entity時，利用Entity ID去尋找在陣列裡實際的位置。當Entity被移除時，我們將陣列裡最後一個尚未失效的Entity移動到被移除的位置上，接著只要更新map，一切就完成。
-在這裡做個簡單的掩飾。
+在這裡做個簡單的演示。
 
-1. 我們假設MAX\_ENTITES 是 5，陣列一開始是空的，map也是空的
+1. 我們假設 \lstinline{MAX_ENTITES} 是 5，陣列一開始是空的，map也是空的
 
 \begin{tabular}{@{} c|c|c|c|c|c|c @{}}
 \headercell
@@ -305,19 +290,15 @@ Size & 3       &&&&& \\
 
 \begin{lstlisting}
 class IComponentArray {
-
 public:
-
     virtual ~IComponentArray() = default;
     virtual void entityDestroyed(Entity entity) = 0;
 };
 
 template<typename T>
 class ComponentArray: public IComponentArray {
-
 public:
     void insertData(Entity entity, T component) {
-
         assert(EntityToIndex.find(entity) == EntityToIndex.end() && "Components added to the same Entity more than once");
         size_t newIndex = size_;
         EntityToIndex[entity] = newIndex;
@@ -327,7 +308,6 @@ public:
     }
 
     void removeData(Entity entity) {
-
         assert(EntityToIndex.find(entity) != EntityToIndex.end() && "Entity does not exist");
 
         size_t remove = EntityToIndex[entity];
@@ -342,39 +322,31 @@ public:
     }
 
     T& getComponent(Entity entity) {
-
         assert(EntityToIndex.find(entity) != EntityToIndex.end() && "retrieving none exist component");
         return componentArray_[EntityToIndex[entity]];
     }
 
     void entityDestroyed(Entity entity) override {
-
         if(EntityToIndex.find(entity) != EntityToIndex.end())
             removeData(entity);
     }
-
 private:
-
     std::array<T, MAX_ENTITIES> componentArray_;
     std::unordered_map<Entity, size_t> EntityToIndex;
     std::unordered_map<size_t, Entity> IndexToEntity;
     size_t size_ = 0;
 };
-\end{lstlisting}
-
-\footnote{這層抽象層是必要的，我們會有很多的Component array，並且用一個list存著他們，每當有Entity被銷毀時，我們必須逐一地去通知他們有Entity被銷毀了。能讓我們存各個不同type的Component的辦法就是有一層抽象層了。}
+\end{lstlisting}\footnote{這層抽象層是必要的，我們會有很多的Component array，並且用一個list存著他們，每當有Entity被銷毀時，我們必須逐一地去通知他們有Entity被銷毀了。能讓我們存各個不同type的Component的辦法就是有一層抽象層了。}
 
 \paragraph{Component Manager}
 
-Component Manager是負責管理所有的Component Array的，並不是讓他們之間溝通，而是通知他們我註冊了哪些Component，或是該刪除哪些Component
+Component Manager 是負責管理所有的 Component Array 的，並不是讓他們之間溝通，而是通知他們我註冊了哪些 Component，或是該刪除哪些 Component
 
 \begin{lstlisting}
 class ComponentManager {
-
 public:
     template<typename T>
     void registerComponent() {
-
         const char* typeName = typeid(T).name();
         assert(componentTypes_.find(typeName) == componentTypes_.end() && "Registering component type more than once");
         componentTypes_.insert({typeName, nextComponentType_});
@@ -384,7 +356,6 @@ public:
 
     template<typename T>
     ComponentType getComponentType() {
-
         const char* typeName = typeid(T).name();
         assert(componentTypes_.find(typeName) != componentTypes_.end() && "Component did not register");
         return componentTypes_[typeName];
@@ -392,26 +363,21 @@ public:
 
     template<typename T>
     void addComponent(Entity entity, T component) {
-
         getComponentArray<T>()->insertData(entity, component);
     }
 
     template<typename T>
     void removeComponent(Entity entity) {
-
         getComponentArray<T>()->removeData(entity);
     }
 
     template<typename T>
     T& getComponent(Entity entity) {
-
         return getComponentArray<T>()->getComponent(entity);
     }
 
     void entityDestroyed(Entity entity) {
-
         for(auto const& pair: componentArray_) {
-
             auto const& component = pair.second;
             component->entityDestroyed(entity);
         }
@@ -419,14 +385,12 @@ public:
 
 
 private:
-
     std::unordered_map<const char*, ComponentType> componentTypes_;
     std::unordered_map<const char*, std::shared_ptr<IComponentArray>> componentArray_;
     ComponentType nextComponentType_ = 0;
 
     template<typename T>
     std::shared_ptr<ComponentArray<T>> getComponentArray() {
-
         const char* typeName = typeid(T).name();
         assert(componentTypes_.find(typeName) != componentTypes_.end() && "Component did not register");
 
@@ -435,16 +399,13 @@ private:
 };
 \end{lstlisting}
 
-
 \subsubsection{System}
 
 System是行為存在的地方。
 每個System都放著存著Entity的list
 
-
 \begin{lstlisting}
 class System {
-
 public:
     std::set<Entity> Entities_;
 };
@@ -454,19 +415,13 @@ public:
 
 \begin{lstlisting}
 class PhysicSystem : public System {
-
 public:
-
     void update(float dt);
-
 };
 
 class GraphicSystem : public System {
-
 public:
-
     void update();
-    
     void render(sf::RenderTarget& target);
 };
 \end{lstlisting}
@@ -475,9 +430,7 @@ public:
 
 \begin{lstlisting}
 void PhysicSystem::update(float dt) {
-
     for(auto const& entity : Entities_) {
-
         auto& transform = ecs.getComponent<Transform>(entity);
         auto& rigidBody = ecs.getComponent<RigidBody>(entity);
 
@@ -488,8 +441,7 @@ void PhysicSystem::update(float dt) {
 }
 \end{lstlisting}
 
-/footnote{物理系統關心實體的Transform以及RigidBody，因此沒有這兩個 Component的實體，系統是不會去更新他們。}
-
+\footnote{物理系統關心實體的Transform以及RigidBody，因此沒有這兩個 Component的實體，系統是不會去更新他們。}
 
 \paragraph{System Manager}
 
@@ -499,11 +451,9 @@ System Manager是負責管理所有的System及他們的Signature。
 
 \begin{lstlisting}
 class SystemManager {
-
 public:
     template<typename T>
     std::shared_ptr<T> registerSystem() {
-
         const char* typeName = typeid(T).name();
         assert(system_.find(typeName) == system_.end() && "Registering system more than once");
         auto system = std::make_shared<T>();
@@ -513,25 +463,20 @@ public:
 
     template<typename T>
     void setSignature(Signature signature) {
-
         const char* typeName = typeid(T).name();
         assert(system_.find(typeName) != system_.end() && "System did not register");
         signatures_.insert({typeName, signature});
     }
 
     void entityDestroyed(Entity entity) {
-
         for(auto const& pair : system_) {
-
             auto const& system = pair.second;
             system->Entities_.erase(entity);
         }
     }
 
     void entitySignatureChanged(Entity entity, Signature entitySignature) {
-
         for(auto const& pair: system_){
-
             auto const& type = pair.first;
             auto const& system = pair.second;
             auto const& systemSignature = signatures_[type];
@@ -540,9 +485,7 @@ public:
             else system->Entities_.erase(entity);
         }
     }
-
 private:
-
     std::unordered_map<const char*, Signature> signatures_;
     std::unordered_map<const char*, std::shared_ptr<System>> system_; 
 };
@@ -554,22 +497,19 @@ private:
 
 \begin{lstlisting}
 class ECS {
-
 public:
-
     ECS() = default;
     void init();
     Entity createEntity();
     void destroyEntity(Entity entity);
+
     template<typename T>
     void registerComponent() {
-
         componentManager_->registerComponent<T>();
     }
 
     template<typename T>
     void addComponent(Entity entity, T component) {
-
         componentManager_ ->addComponent<T>(entity, component);
         auto signature = entityManager_->getSignature(entity);
         signature.set(componentManager_->getComponentType<T>(), true);
@@ -580,7 +520,6 @@ public:
 
     template<typename T>
     void removeComponent(Entity entity){
-
         componentManager_->removeComponent<T>(entity);
         auto signature = entityManager_->getSignature(entity);
         signature.set(componentManager_->getComponentType<T>(), false);
@@ -590,98 +529,78 @@ public:
 
     template<typename T>
     T& getComponent(Entity entity) {
-
         return componentManager_->getComponent<T>(entity);
     }
 
     template<typename T>
     ComponentType getComponentType() {
-
         return componentManager_->getComponentType<T>();
     }
 
     template<typename T>
     std::shared_ptr<T> registerSystem() {
-
         return systemManager_->registerSystem<T>();
     }
 
     template<typename T>
     void setSystemSignature(Signature signature) {
-
         systemManager_->setSignature<T>(signature);
     }
-
 private:
-
     std::unique_ptr<EntityManager> entityManager_;
     std::unique_ptr<ComponentManager> componentManager_;
     std::unique_ptr<SystemManager> systemManager_;
 };
 
-
 void ECS::init() {
-
     entityManager_ = std::make_unique<EntityManager>();
     componentManager_ = std::make_unique<ComponentManager>();
     systemManager_ = std::make_unique<SystemManager>();
 }
 
-
 Entity ECS::createEntity() {
-
     return entityManager_->createEntity();
 }
 
 void ECS::destroyEntity(Entity entity) {
-
     entityManager_->destroyEntity(entity);
     componentManager_->entityDestroyed(entity);
     systemManager_->entityDestroyed(entity);
 }
-
 \end{lstlisting}
 
-\paragraph{使用方法，假設擁有有三個Component}
+\paragraph{使用方法}
+
+假設擁有有三個Component，儲存角色資訊的 Transform 、儲存物理資訊的 RigidBody、以及儲存圖像的 Graphic。
 
 \begin{lstlisting}
-struct Transform{
-
+struct Transform {
 public:
     float x_;
     float y_;
 };
 
-
-struct RigidBody{
-
+struct RigidBody {
 public:
     float v_;
 };
 
-struct Graphic{
-
+struct Graphic {
 public:
-
     Texture texture;
 };
 \end{lstlisting}
 
-\paragraph{我們的Graphic System}
+實作 Graphic System ，並且撰寫渲染圖像的邏輯。
 
 \begin{lstlisting}
 class GraphicSystem : public System {
-
 public:
-
     void render(RenderTarget& target);
 };
 
-
 void GraphicSystem::render() {
-
     for(auto const& entity : Entities_) {
-
         auto& graphic = ecs.getComponent<Graphic>(entity);
         auto& transform = ecs.getComponent<Transform>(entity);
         
@@ -690,21 +609,16 @@ void GraphicSystem::render() {
 }
 \end{lstlisting}
 
-\paragraph{PhysicSystem}
+實作 PhysicSystem ，處理物理模擬方面的邏輯。
 
 \begin{lstlisting}
 class PhysicSystem : public System {
-
 public:
-
     void update(float dt);
-
 };
 
 void PhysicSystem::update(float dt) {
-
     for(auto const& entity : Entities_) {
-
         auto& transform = ecs.getComponent<Transform>(entity);
         auto& rigidBody = ecs.getComponent<RigidBody>(entity);
 
@@ -715,8 +629,7 @@ void PhysicSystem::update(float dt) {
 }
 \end{lstlisting}
 
-
-\paragraph{初始化}
+\subparagraph{初始化}
 
 \begin{lstlisting}
 ECS::ECS ecs;
@@ -727,7 +640,7 @@ ecs.registerComponent<ECS::RigidBody>();
 ecs.registerComponent<ECS::Graphic>();
 \end{lstlisting}
 
-\paragraph{註冊System以及設定signature}
+\subparagraph{註冊System以及設定signature}
 
 \begin{lstlisting}
 auto graphicSystem = ecs.registerSystem<ECS::GraphicSystem>();
@@ -748,7 +661,6 @@ ecs.setSystemSignature<ECS::PhysicSystem>(signature);
 std::vector<ECS::Entity> entites(ECS::MAX_ENTITIES);
 
 for(auto& entity: entites) {
-
     entity = ecs.createEntity();
     ecs.addComponent(
         entity,
