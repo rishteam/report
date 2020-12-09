@@ -28,8 +28,15 @@
 
 \subsection{遊戲引擎具備的功能}
 
-TODO
+一個遊戲引擎要具備的功能非常多，並且功能以層層分開，上層依賴的下層的功能實現，從底層的硬體、作業系統，接著是使用的函式庫，接著核心系統例如：視窗函式庫、檔案系統、網路、序列化、型別資訊等。
+再上層有資源管理（素材載入）、渲染器(Renderer)、物理引擎等子系統，可見遊戲引擎的龐大。 \cite{Gregory.2018}
 
-\includegraphics[width=\textwidth]{./resources/engine_arch.png}
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=\textwidth]{./resources/engine_arch.png}
+    \end{center}
+\caption*{引擎架構 取自 Game Engine Architecture 3rd edition}
+\label{fig:EngineArch}
+\end{figure}
 
 \newpage
