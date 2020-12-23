@@ -17,7 +17,10 @@
 \usepackage[CheckSingle, CJKmath]{xeCJK}
 \usepackage{CJKulem}
 
-\setCJKmainfont{Noto Sans CJK TC}
+% \setCJKmainfont{Noto Sans CJK TC}
+\setCJKmainfont{Times New Roman}
+\setCJKmainfont{標楷體}
+\linespread{1.5}
 
 \usepackage{packages/rish}
 
@@ -26,22 +29,21 @@
 %%%%%%%%%%%%%%
 
 \logo{./resources/pdf/blank.png} % TODO: 把上面的空白想辦法拿掉(see pdf)
-\institute{輔仁大學資訊工程學系}
-\faculty{畢業專題報告}
-\department{B03 組}
+\institute{輔仁大學資訊工程學系專題報告}
 \title{Rish Engine - 2D 遊戲引擎}
-\subtitle{從零開始自幹遊戲引擎}
-\author{\textit{成員} \\
-	406262515 \textsc{鍾秉桓} me@roy4801.tw\ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
-    406262084 \textsc{梁博全} me@icejj.tw\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \\
-    406262319 \textsc{黃育晧} suntalk1224@gmail.com\ \  \\
-    406262163 \textsc{黃品翰} william31212@gmail.com \\
+\subtitle{從零開始製作遊戲引擎}
+\author{
+    \raggedright
+    \hspace{2.5cm} 406262515 資工四乙\enspace 鍾秉桓 me@roy4801.tw \\
+    \hspace{2.5cm} 406262084 資工四乙\enspace 梁博全 me@icejj.tw \\
+    \hspace{2.5cm} 406262319 資工四乙\enspace 黃育晧 suntalk1224@gmail.com \\
+    \hspace{2.5cm} 406262163 資工四乙\enspace 黃品翰 william31212@gmail.com \\
     \ \\
+    \centering
     報告編號: CS109-PR-B03 \\
-    \ \\
-    \textit{指導教授} \\
-    鄭進和
+    指導教授: 鄭進和\enspace 副教授 \\
 }
+
 %\supervisor{Linus \textsc{Torvalds}}
 %\context{Well, I was bored...}
 \date{\today}
@@ -79,17 +81,19 @@
 \nocite{*} % Force prints all the bibs
 
 \begin{document}
+
     \maketitle
+    \import{./}{摘要.tex}
+
     \romantableofcontents
     \listoffigures
     \listoftables
 
-    \import{./}{ch1_摘要.tex}
-    \import{./}{ch2_緒論.tex}
-    \import{./}{ch3_系統說明.tex}
-    \import{./}{ch4_系統實作結果.tex}
-    % \import{./}{ch5_結論與未來展望.tex}
-    \import{./}{ch6_心得.tex}
+    \import{./}{ch1_緒論.tex}
+    \import{./}{ch2_系統說明.tex}
+    \import{./}{ch3_系統實作結果.tex}
+    \import{./}{ch4_結論與未來展望.tex}
+    \import{./}{ch5_心得.tex}
 
     \printbibliography
 
