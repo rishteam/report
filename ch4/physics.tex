@@ -12,40 +12,61 @@
 \paragraph{2D遊戲物理引擎}
 \begin{itemize}
     \item{Box2D}
-        \includegraphics[height=0.2\linewidth]{./resources/physics/box2d(1).png} 
-    \SubItem{一款免費的開源二維物理引擎，由Erin Catto使用C++編寫，在zlib授權下發布}
-        \SubItem{著名遊戲}
-            \SubSubItem{AngryBird}
-                \includegraphics[width=0.1\linewidth]{./resources/physics/angryBird.png}
-        \SubItem{一個剛體動力學模擬引擎和一個碰撞檢測引擎，支援長方體、球體、圓柱體}
+        \SubItem{一款免費的開源二維物理引擎，由Erin Catto使用C++編寫，在zlib授權下發布}
 \end{itemize}
 
 \paragraph{3D遊戲物理引擎}
 \begin{itemize}
     \item{ODE}
-        \includegraphics[height=0.2\linewidth]{./resources/physics/ODE(1).png}
         \SubItem{一個剛體動力學模擬引擎和一個碰撞檢測引擎，支援長方體、球體、圓柱體}
-        \SubItem{著名遊戲}
-            \SubSubItem{浩劫殺陣：車諾比之影}
-                \includegraphics[width=0.1\linewidth]{./resources/physics/ODE(2).png}
-            \SubSubItem{X-Moto}
-                 \includegraphics[width=0.1\linewidth]{./resources/physics/ODE(3).png}
     \item{Bullet}
-        \includegraphics[height=0.2\linewidth]{./resources/physics/bullet(1).png}
         \SubItem{一個跨平台的開源物理引擎，支援三維碰撞檢測、柔體動力學和剛體動力學，多用於遊戲開發和電影製作中}
-        \SubItem{著名遊戲}
-            \SubSubItem{GTA 俠盜獵車手V}
-                \includegraphics[width=0.1\linewidth]{./resources/physics/bullet(2).png} 
     \item{Havok}
-        \includegraphics[height=0.2\linewidth]{./resources/physics/havok(1).png}
         \SubItem{遊戲動力學開發工具包（Havok Game Dynamics SDK）}
         \SubItem{一個用於物理（動力學）效應模擬的遊戲引擎，為電子遊戲所設計，注重在遊戲中對於真實世界的模擬}
-        \SubItem{著名遊戲}
-            \SubSubItem{星海爭霸II：自由之翼}
-                \includegraphics[height=0.2\linewidth]{./resources/physics/havok(2).png}
-            \SubSubItem{薩爾達傳說 - 曠野之息}
-                \includegraphics[height=0.2\linewidth]{./resources/physics/havok(3).png}
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/box2d(1).png}
+    \caption{Box2D}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/ODE(1).png}
+    \caption{ODE}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/bullet(1).png}
+    \caption{Bullet}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/havok(1).png}
+    \caption{Havok}
+    \end{subfigure}
+\caption{常見的物理引擎}
+\label{fig:Common_phyicalEnginie}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/angryBird.png}
+    \caption{Box2D-AngryBird}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/ODE(3).png}
+    \caption{ODE-X-Moto}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/bullet(2).png}
+    \caption{Bullet-GTA V}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/havok(3).png}
+    \caption{Havok-薩爾達傳說}
+    \end{subfigure}
+\caption{各個引擎的著名遊戲}
+\label{fig:Common_game}
+\end{figure}
 
 \note{以上內容出自維基百科}
 
@@ -64,7 +85,7 @@
         \SubItem{\href{https://www.youtube.com/watch?v=NwPIoVW65p}{GDC2015 - Bend the Physics Engine to Your Will}}
         \SubItem{\href{http://allenchou.net/game-physics-series/}{AllenChou Game Physics series}}
     \item{閱讀相關技術文章，結果掉出同樣在研究遊戲物理來我個人網站上留言}
-        \SubItem{\includegraphics[width=\linewidth]{./resources/physics/comment.png}}
+        \SubItem{Figure~\ref{fig:Phy_research}}
     \item{SITCON2020 - 你說這隻溫馴的繩嗎？}
         \SubItem{有資源可以詢問}
         \SubItem{藉此拿到遊戲物理界大老Allen Chou系列影片}
@@ -88,8 +109,22 @@
         \SubItem{牽涉到空間的物理模擬對於短時間來說要實做出來太過於困難(畢業專題從開始製作總共也就幾個月而已)}
         \SubItem{因此便放棄研究 3D}
     \item{網路上的酸言酸語}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/sour.jpg}}
+        \SubItem{Figure~\ref{fig:Phy_research}}
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/comment.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/sour.jpg}
+    \end{subfigure}
+\caption{研究歷程}
+\label{fig:Phy_research}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \subsubsection{核心觀念}
 \paragraph{數學}
@@ -99,10 +134,8 @@
     \item{向量}
         \SubItem{內積}
             \SubSubItem{內積在物理引擎模擬時通常都是用在投影上，代表一條向量到另外一條向量的投影量}
-            \SubSubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/intersect.png}}
         \SubItem{外積}
             \SubSubItem{外積通常擔任的身分都是旋轉居多，在三維空間的外積通常表示兩向量維出紙面或入紙面的旋轉，在二維則為順時針旋轉跟順時針旋轉居多}
-            \SubSubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/outersect.png}}
 
 \item{座標轉換}
         \SubItem{利用線性代數座標空間觀念來方便我們做運算}
@@ -112,9 +145,28 @@
             \SubSubItem{將world space轉換到p的local space}
         \SubItem{$A^{1} \cdot p$}
             \SubSubItem{將$p$的`local space`轉換到`world space`}
-       \SubItem{\includegraphics[height=0.5\linewidth]{./resources/physics/inverseTransform.png}}
-            \note{左下角為worldSpace的座標，紅框裡的則為各個物體的localspace座標}
+        \note{示意圖中左下角為worldSpace的座標，紅框裡的則為各個物體的localspace座標}
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/intersect.png}
+    \caption{向量-內積}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/outersect.png}
+    \caption{向量-外積}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/inverseTransform.png}
+    \caption{座標轉換}
+    \end{subfigure}
+\caption{核心觀念-數學}
+\label{fig:idea_math}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \paragraph{物理}
 \subparagraph{線性相關}
@@ -148,9 +200,7 @@
     \item{力矩 $\tau$}
         \SubItem{$\tau = F \cdot d$}
         \SubItem{$d$為受力點與質心的距離}
-        \SubItem{\includegraphics[width=0.5\linewidth]{./resources/physics/tau.png}}
     \item{轉動慣量(慣性矩)$I$}
-        \SubItem{\includegraphics[width=0.5\linewidth]{./resources/physics/Interia.png}}
         \note{既然線性中有質量，在旋轉上也就有所謂的轉動慣量}
         \SubItem{定義}
             \SubSubItem{$I = \sum{m_i r_i^2} = \int_V \rho r^2 dV$}
@@ -174,7 +224,6 @@
     \item{角動量}
         \SubItem{物體的角動量是物體的位置向量和動量的叉積，通常寫做$\mathbf{L}$}
         \SubItem{$L = r \times p$}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/L.png}}
 \end{itemize}
 
 \subparagraph{微分、積分}
@@ -182,12 +231,10 @@
     \item{位置、速度、加速度}
         \SubItem{位置 ---> 速度 ---> 加速度 ($\frac{d}{dt}$) 微分}
         \SubItem{位置 <--- 速度 <--- 加速度 ($\int{dt}$) 積分}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/xva.png}}
     \item{那，不就找到積分函數就好了？}
         \SubItem{因為我無法知道下一刻的加速度長甚麼樣子，函數圖形有可能會漲跌}
         \SubItem{而只要有力，加速度就會有變化(碰撞、拉扯、浮力(x))}
     \item{因此只能透過數值積分來解決}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/deltaT.png}}
     \item{Euler-Method(歐拉法數值積分)}
         \SubItem{用前一刻的值，算出下一刻的值是多少}
             \SubSubItem{程式寫起來可能通常長這樣}
@@ -195,7 +242,6 @@
         v += a * dt;
         x += v * dt;
     \end{lstlisting}
-    \note{圖片出自: SITCON2020 - 你說這隻溫馴的繩嗎}
     \item{Runge-Kutta \(Runge-Kutta方法\)}
         \SubItem{以 3rd Runge-Kutta 舉例}
     \begin{lstlisting}
@@ -220,46 +266,95 @@
     \end{lstlisting}
 \end{itemize}
 
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/tau.png}
+    \caption{力矩 $\tau$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/Interia.png}
+    \caption{轉動慣量(慣性矩)$I$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/L.png}
+    \caption{角動量}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/xva.png}
+    \caption{位置、速度、加速度}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/deltaT.png}
+    \caption{數值積分}
+    \end{subfigure}
+\caption{核心觀念-物理}
+\label{fig:idea_physics}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{遊戲物理名詞定義}
 
 \paragraph{Rigid Bodies}
 \begin{itemize}
     \item{鋼體，能夠忽略形變的物體}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/rigidBody.png}}
     \note{鋼體與柔體的比較，鋼體例子如鐵盒，柔體例子如黏土}   
 \end{itemize}
 
 \paragraph{Joints}
 \begin{itemize}
     \item{關節點，能夠連接兩個對象在一個單一的支點}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/Joint.png}}
 \end{itemize}
 
 \paragraph{Constraint}
 \begin{itemize}
     \item{中文翻譯為約束}
         \SubItem{在遊戲物理的意義，則是讓物體符合遊戲物理世界的規定，像是物體不能穿過地板}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/Constraint.png}}
 \end{itemize}
 
 \paragraph{Contact points}
 \begin{itemize}
-    \item{在此示意圖中，c1, c2 為接觸點}
-        \SubItem{在兩物體重疊之後，會計算出接觸點，透過接觸點來算出如何解掉約束}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/contactPoint.png}}
+    \item{在兩物體重疊之後，會計算出接觸點，透過接觸點來算出如何解掉約束}
+    \note{c1, c2 為接觸點}
 \end{itemize}
 
 \paragraph{Arbiters}
 \begin{itemize}
-    \item{英文原意，仲裁者}
+    \item{英文原意為仲裁者}
         \SubItem{每個Aribiter都會有兩個contact-point，以及兩個RigidBody(一個攻、一個受)，計算出該point應該要修正的衝量大小}
-        \SubItem{\includegraphics[height=0.2\linewidth]{./resources/physics/Arbiter.png}}
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.19\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/rigidBody.png}
+    \caption{鋼體}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.19\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/Joint.png}
+    \caption{關節點}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.19\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/Constraint.png}
+    \caption{約束}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.19\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/contactPoint.png}
+    \caption{接觸點}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.19\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/Arbiter.png}
+    \caption{仲裁器}
+    \end{subfigure}
+\caption{遊戲物理名詞示意圖}
+\label{fig:game_physice_terms}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{實作}
 
 \paragraph{前言}
-\includegraphics[height=0.2\linewidth]{./resources/physics/pre.png}
 
 \begin{itemize}
     \item{依據Box2D作者描述，使用衝量模擬有以下優點}
@@ -308,6 +403,7 @@ else
         \SubItem{$rot$ += $\Delta_{t} * \omega$}
 \end{itemize}
 
+\newpage
 \begin{lstlisting}
 for (int i = 0; i < (int)bodies.size(); ++i)
 {
@@ -321,9 +417,9 @@ for (int i = 0; i < (int)bodies.size(); ++i)
 }
 \end{lstlisting}
 
-\paragraph{碰撞檢測、找出接觸點 \(Collision Detection\)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subparagraph{\includegraphics[height=0.4\linewidth]{./resources/physics/detection.png}}
+\paragraph{碰撞檢測、找出接觸點 \(Collision Detection\)}
 
 \subparagraph{Broad-phase\(大略檢測\)}
 
@@ -337,7 +433,6 @@ for (int i = 0; i < (int)bodies.size(); ++i)
         \SubItem{\href{https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374}{QuadTree細節}}
 \end{itemize}
 
-
 \subparagraph{Narrow-Phase (實際檢測) - 碰撞演算法}
 \begin{itemize}
     \item{AABB}
@@ -348,11 +443,9 @@ for (int i = 0; i < (int)bodies.size(); ++i)
     \SubItem{缺點}
         \SubSubItem{當物體旋轉時就無法檢查}
         \SubSubItem{只能檢查矩形問題}
-    \SubItem{實作(需同時滿足兩個條件}
+    \SubItem{實作 (需同時滿足兩個條件, 示意圖:~\ref{fig:phy_AABB}}
         \SubSubItem{$A.max > B.min$}
-        \SubSubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/AmaxBmin.png}}
         \SubSubItem{$B.max > A.min$}
-        \SubSubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/BmaxAmin.png}}
     \SubItem{Example Code}
         \begin{lstlisting}
             bool CheckCollision(Shape &a, Shape &b) // AABB - AABB collision
@@ -366,7 +459,6 @@ for (int i = 0; i < (int)bodies.size(); ++i)
                 return collisionX && collisionY;
             }  
         \end{lstlisting}
-\note{圖片參考自: http://davidhsu666.com/archives/gamecollisiondetection/}
     \item{SAT \(Seperated Axis Therom\)}
         \SubItem{優點}
             \SubSubItem{可以判斷旋轉時的物體之碰撞}
@@ -380,53 +472,131 @@ SAT必須檢查所有的法向量，來確保物體之間沒有分離線，越�
         \note{https://hackmd.io/WOPle5lbRzuBzUhgFZ3h5Q}
 \end{itemize}
 
-\subparagraph{尋找接觸點和最小穿透軸\(Find Contact Points, Minimum penertration Axis\)}
+\begin{figure}[h]
+    \includegraphics[width=0.8\linewidth]{./resources/physics/detection.png}
+\caption{碰撞檢測}
+\label{fig:phy_detection}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=0.8\linewidth]{./resources/physics/AmaxBmin.png}
+    \caption{接觸點}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=0.8\linewidth]{./resources/physics/BmaxAmin.png}
+    \caption{接觸點}
+    \end{subfigure}
+\caption{AABB實作示意圖}
+\label{fig:phy_AABB}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\subparagraph{尋找接觸點和最小穿透軸}
 \begin{itemize}
     \item{在解決約束之前，我們必須要先找到適合的點以及能夠將兩物體分離的向量}
     \item{接觸點}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/contactPoint(2).png}}
         \SubItem{碰撞點是處理碰撞的關鍵，因為這取決了碰撞之後求解器計算出的衝量要應用於物體的哪個位置，在物體的不同位置應用衝量往往會產生截然不同的效果}
-            \SubSubItem{舉例，若將接觸點訂在質心，東西則會筆直的向外飛出，而在非質心點的位置，則可能造就物體的旋轉}
-    \item{最小穿透軸\(Minimum penertration Axis\)}
-        \SubItem{在兩兩物體互相碰撞的狀態下，一定有部分地方邊被插入得比較深，相對的，也會有部分邊被插入得比較淺，或是根本沒有被碰撞到。我們可以透過SAT\(Seperated Axis Therom\)演算法，找出到底哪個地方的邊是被插入最少的，並透過最小穿透軸的法向量，找出最能有效將兩物體分離之向量}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/miniAxis.png}}
-    \item{Reference Face \/ Incident Face}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/refinc.png}}
+        \SubItem{舉例: 若將接觸點訂在質心，東西則會筆直的向外飛出，而在非質心點的位置，則可能造就物體的旋轉}
+    \item{最小穿透軸}
+        \SubItem{在兩兩物體互相碰撞的狀態下，一定有部分地方邊被插入得比較深，相對的，也會有部分邊被插入得比較淺，或是根本沒有被碰撞到。我們可以透過SAT (Seperated Axis Therom)演算法，找出到底哪個地方的邊是被插入最少的，並透過最小穿透軸的法向量，找出最能有效將兩物體分離之向量}
+    \item{Reference Face/Incident Face}
         \SubItem{找出最小穿透軸之後，我們會決定incident face及reference face，reference代表被插入的邊，incident face則是插入的邊}
     \item{V-Clip演算法}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/vclip.png}}
+        \SubItem{Box-Box Clipping}
+            \SubSubItem{Clip incident face against side planes}
+            \SubSubItem{Discard points above reference face}
         \SubItem{透過V-Clip演算法，能夠切除在接觸面以外的接觸點，過濾不必要的接觸點，讓模擬更加穩定及合理，$n$為最小穿透軸的法向量，綠色為reference face，藍色為incident face}
     \item{詳細算法可以參照以下連結}
         \SubItem{https://www.slideshare.net/slideshow/embed\_code/key/5R0vx2057BpeRL} 
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=0.8\linewidth]{./resources/physics/contactPoint(2).png}
+    \caption{接觸點}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=0.8\linewidth]{./resources/physics/miniAxis.png}
+    \caption{最小穿透軸}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=0.8\linewidth]{./resources/physics/refinc.png}
+    \caption{Reference/Incident Face}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+    \includegraphics[width=0.8\linewidth]{./resources/physics/vclip.png}
+    \caption{V-Clip演算法}
+    \end{subfigure}
+\caption{尋找接觸點和最小穿透軸示意圖}
+\label{fig:phy_AABB}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \paragraph{解決約束 \(Solve Constraints\)}
 
 \begin{itemize}
     \item{約束}
         \SubItem{可以想像成一種在物理世界訂定的規定，遊戲設計者可以依據不同的鋼體物理元素賦予不一樣的規定，讓鋼體有不同的結果。在前一個階段我們計算出接觸點，目的就是藉此用來解決約束}
-    \item{約束的例子}
-        \SubItem{Contact and Friction}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/contactFric.png}}
-        \SubItem{Ragdolls}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/Ragdoll.png}}
-        \SubItem{Paricles and cloth}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/PariclesCloth.png}}
 \end{itemize}
 
-\note{圖一是接觸與摩擦力約束，圖二是布娃娃的物理系統，詳情可以參考，圖三是用物理粒子連結成一塊布，以上都是約束的例子，圖片出自Erin Catto 2008 Physics PPT}
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/contactFric.png}
+    \caption{Contact and Friction}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/Ragdoll.png}
+    \caption{Ragdolls}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/PariclesCloth.png}
+    \caption{Paricles and cloth}
+    \end{subfigure}
+\caption{約束的例子}
+\label{fig:constraint_ex}
+\end{figure}
+
+\note{圖(a)是接觸與摩擦力約束，圖(b)是布娃娃的物理系統，圖(c)是用物理粒子連結成一塊布，以上都是約束的例子，圖片出自Erin Catto 2008 Physics PPT}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \subparagraph{位置約束}
 \begin{itemize}
-    \item{位置約束}
-        \SubItem{舉一個簡單的例子，一個人在溜滑板，滑板被限制在坡道上，使人能夠在坡道上安信的划著滑板}
-        \SubItem{\includegraphics[width=0.4\linewidth]{./resources/physics/position.png}}
-        \SubItem{我們可以將滑板當作一個質點，就可以簡單的求出滑板在彎道及平面的約束式子，$C$可以當成一個函數，當$C > 0$，代表滑板在平面或曲面之上，換句話說，一旦我們發現這個函數並不等於0的時候，程式就必須介入來解決約束}
-        \SubItem{\includegraphics[width=0.4\linewidth]{./resources/physics/plat.png}}
-        \note{平面上的約束}
-        \SubItem{\includegraphics[width=0.4\linewidth]{./resources/physics/curve.png}}
-        \note{曲面上的約束}
+    \item{舉一個簡單的例子，一個人在溜滑板，滑板被限制在坡道上，使人能夠在坡道上安信的划著滑板}
+    % \SubItem{\includegraphics[width=0.4\linewidth]{}}
+    \item{我們可以將滑板當作一個質點，就可以簡單的求出滑板在彎道及平面的約束式子，$C$可以當成一個函數，當$C > 0$，代表滑板在平面或曲面之上，換句話說，一旦我們發現這個函數並不等於0的時候，程式就必須介入來解決約束}
+    \item{平面上的約束}
+        \SubItem{$C(p)=0$}
+        \SubItem{$C(p)=n(p-p_0)$}
+    \item{曲面上的約束}
+        \SubItem{$C(p)=\mid\mid p-p_0\mid\mid -r$}
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/position.png}
+    \caption{Example}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/plat.png}
+    \caption{平面上的約束}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{./resources/physics/curve.png}
+    \caption{曲面上的約束}
+    \end{subfigure}
+\caption{位置約束}
+\label{fig:Postion_constraint}
+\end{figure}
+
 
 \subparagraph{Ground Constraint\(地面約束\)}
 \begin{itemize}
@@ -521,8 +691,10 @@ y += vy * dt;
             - \SubSubItem{7️ $\lambda = M_{eff}*[-(JV_1+b)]$}
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
 \subparagraph{距離約束}
-\subparagraph{\includegraphics[height=0.4\linewidth]{./resources/physics/disCon.png}}
 
 \begin{itemize}
     \item{他的位置約束的式子長這樣}
@@ -541,8 +713,26 @@ y += vy * dt;
         \begin{equation} \dot{C} = \frac{x^{T}}{\left \|x  \right \|} \cdot v \end{equation}
 \end{itemize}
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[height=0.4\linewidth]{./resources/physics/disCon.png}
+    \end{center}
+    \caption{距離約束}
+    \label{disConstraint}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
 \subparagraph{碰撞回饋}
-\subparagraph{\includegraphics[height=0.5\linewidth]{./resources/physics/feedback.png}}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[height=0.4\linewidth]{./resources/physics/feedback.png}
+    \end{center}
+    \caption{碰撞回饋}
+    \label{CollisionFeedback}
+\end{figure}
 
 \begin{itemize}
 \item{質心$C_A$, $C_B$}
@@ -636,14 +826,13 @@ y += vy * dt;
 \subparagraph{摩擦力}
 
 \begin{itemize}
-    \SubItem{消除穿透點PA, PB與切面方向t1的相對速度}
+    \SubItem{消除穿透點$P_A$, $P_B$與切面方向t1的相對速度}
     \SubItem{根據Coulomb理論，摩擦力會箝制在以下式子}
         \SubSubItem{Coulomb's law}
             $|\lambda_t|\leq\mu\lambda_n$
         \SubSubItem{In 2D}
             $-\mu\lambda_n\leq\lambda_t\leq\mu\lambda_n$
     \SubItem{一樣，我們可以將其通則化}
-    \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/pt.png}}
         \begin{equation}
             \begin{aligned}
                 \dot{C} &=&& v_p \cdot t \\
@@ -661,10 +850,18 @@ y += vy * dt;
     
 \end{itemize}
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.3\linewidth]{./resources/physics/pt.png}
+    \end{center}
+    \caption{摩擦力示意圖}
+    \label{Friction}
+\end{figure}
+
 \paragraph{積分結果 \(Integral position\)}
 
 \begin{itemize}
-    \SubItem{Example Code}
+    \item{Example Code}
 \end{itemize}
 
 \begin{lstlisting}  
@@ -683,24 +880,38 @@ for (int i = 0; i < (int)bodies.size(); ++i)
 \begin{itemize}
 \item{Warm Starting(暖身)}
     \SubItem{為了解決迭代次數過多的問題,我們可以使用暖身(warm starting)的方式來減少迭代次數。在大部分情況下發生碰撞的情況下，每一frame的並不會太大，因此我們可以利用連續的frame來分攤計算的迭代次數。實作非常簡單，在前一幀計算出修正衝量，直接施加在下一個frame上。}
-    \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/warm.png}}
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{./resources/physics/warm.png}
+    \end{center}
+    \caption{Warm Starting}
+    \label{Warm_Starting}
+\end{figure}
 
 \begin{itemize}
     \item{Accumulation Impulse}
         \SubItem{在一般的衝量計算(Box2d稱他為Naïve Impulses)中，每個接觸點算出來的衝量都是獨立出來個別計算的，但這樣會導致微幅的抖動。除此之外，也不能保證每次算出來的修正量值都一定為正，這有可能導致物體會越陷越深的問題}
-        \SubItem{\includegraphics[height=0.4\linewidth]{./resources/physics/accu.png}}
         \SubItem{解決的方法是將每一個frame的衝量都記錄下來，存成一個累積值(accumulation)，並將其修正衝量都限制在0以上，就能夠避免越陷越深的問題了，以下使用簡單code來說明}
             \SubSubItem{Normal Clamping}
             \SubSubItem{accmulation\_Pn 累積衝量}
             \SubSubItem{Pn 這一個frame要修正的衝量}
 \end{itemize}
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{./resources/physics/accu.png}
+    \end{center}
+    \caption{Accumulation Impulse}
+    \label{Accumulation_Impulse}
+\end{figure}
+
 \begin{lstlisting} 
-temp = accmulation_Pn
-accmulation_Pn = max(accmulation_Pn + Pn, 0)
-Pn = accmulation_Pn - temp
-\caption{}
+    temp = accmulation_Pn
+    accmulation_Pn = max(accmulation_Pn + Pn, 0)
+    Pn = accmulation_Pn - temp
+    \caption{}
 \end{lstlisting}
 
 \begin{itemize}
@@ -716,13 +927,33 @@ accmulation_Pn = Clamp(accmulation_Pt + Pt, -u*accmulation_Pn, u*accmulation_Pn)
 Pt = accmulation_Pt - temp
 \end{lstlisting}
 
-\begin{itemize}
-    \item{Non \- WarmStarting \& Accumulation}
-    \item{\includegraphics[height=0.4\linewidth]{./resources/physics/none.png}}
-    \item{WarmStarting \& Accumulation}
-    \item{\includegraphics[height=0.4\linewidth]{./resources/physics/has.png}}
-\end{itemize}
+% \begin{itemize}
+%     \item{Non \- WarmStarting \& Accumulation}
+%     \item{\includegraphics[height=0.4\linewidth]{./resources/physics/none.png}}
+%     \item{WarmStarting \& Accumulation}
+%     \item{\includegraphics[height=0.4\linewidth]{./resources/physics/has.png}}
+% \end{itemize}
 
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.5\linewidth}
+        \begin{center}
+            \includegraphics[width=\linewidth]{./resources/physics/has.png}
+        \end{center}
+        \caption{使用}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \begin{center}
+            \includegraphics[width=\linewidth]{./resources/physics/none.png}
+        \end{center}
+        \caption{未使用}
+    \end{subfigure}
+    \caption{Warm Starting 與 Accumulation Impulse 使用與否}
+    \label{WS_AI}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \paragraph{問題}
 
@@ -733,11 +964,10 @@ Pt = accmulation_Pt - temp
         \SubItem{$\Delta t$的不固定，導致每次做數值積分的時候，位置更新都有部分誤差}
 \end{itemize}
 
-\paragraph{未來展望}
-\begin{itemize}
-    \item{新增軟性約束}
-        \SubItem{軟性的約束可以模擬彈簧的效果}
-    \item{擴展成3D的遊戲物理引擎}
-        \SubItem{牽扯到3D，相關運算似乎都要使用一些線性代數中矩陣乘法的一些技巧或是求解器，因為專題時間的關係，無法支援到立體之間的碰撞。}
-\end{itemize}
-\newpage
+% \paragraph{未來展望}
+% \begin{itemize}
+%     \item{新增軟性約束}
+%         \SubItem{軟性的約束可以模擬彈簧的效果}
+%     \item{擴展成3D的遊戲物理引擎}
+%         \SubItem{牽扯到3D，相關運算似乎都要使用一些線性代數中矩陣乘法的一些技巧或是求解器，因為專題時間的關係，無法支援到立體之間的碰撞。}
+% \end{itemize}

@@ -184,14 +184,12 @@ void ScriptableManager::Init()
 
 重新編譯並打開 Editor 後可以在 NativeScriptComponent 中選擇剛剛撰寫的 Script 名稱，在 Script 中的 \lstinline{onImGuiRender()} 可以撰寫 UI 的邏輯(用於 Debug、挑整參數)，便會顯示在此處。
 
-\subsubsection{未來展望}
+% \subsubsection{未來展望}
 
-\begin{itemize}
-\item{使用 Scripting Language}
-    \SubItem{目前 RishEngine 直接使用 C++ 作為 Script 的語言，優點是可以直接使用引擎的 C++ API，但缺點就是編譯非常花時間}
-    \SubItem{可以使用開源的專案，接著只要提供該語言的引擎 API 之後，便可以用該腳本語言撰寫遊戲邏輯}
-        \SubSubItem{例如 \lstinline{mono(C#)}、\lstinline{sol2(lua)}、\lstinline{pybind11(python)} 綁定腳本語言}
-    \SubItem{動態語言雖然效能沒有編譯語言好，但動態語言不用等待編譯，這對需要快速迭代的遊戲來說至關重要}
-\end{itemize}
-
-\newpage
+% \begin{itemize}
+% \item{使用 Scripting Language}
+%     \SubItem{目前 RishEngine 直接使用 C++ 作為 Script 的語言，優點是可以直接使用引擎的 C++ API，但缺點就是編譯非常花時間}
+%     \SubItem{可以使用開源的專案，接著只要提供該語言的引擎 API 之後，便可以用該腳本語言撰寫遊戲邏輯}
+%         \SubSubItem{例如 \lstinline{mono(C#)}、\lstinline{sol2(lua)}、\lstinline{pybind11(python)} 綁定腳本語言}
+%     \SubItem{動態語言雖然效能沒有編譯語言好，但動態語言不用等待編譯，這對需要快速迭代的遊戲來說至關重要}
+% \end{itemize}

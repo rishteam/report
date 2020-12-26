@@ -74,6 +74,7 @@
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{引擎實體檢視 Inspector}
 
 \begin{itemize}
@@ -81,7 +82,7 @@
     \SubItem{新增、刪除、修改數值}
 \item{Component的操作介面}
     \SubItem{新增、刪除、修改數值}
-\item{各個Component的操作 \(詳細參照Figure~\ref{fig:Inspector} \) }
+\item{各個Component的操作}
     \SubItem{TagComponent}
         \SubSubItem{標示其Tag與ID}
         \SubSubItem{Tag可修改，ID不可修改}
@@ -105,22 +106,87 @@
     \SubItem{Joint2DComponent}
         \SubSubItem{能夠讓兩個剛體物理相互連接，並使兩物體控制在一定的距離之間}
     \SubItem{LightComponent}
-        \SubSubItem{點光源效果，能夠讓世界擁有光源並受光照影響可見度亦會使物體產生陰影}
+        \SubSubItem{點光源效果，能夠讓世界擁有光源並受光照影響亦會使物體產生陰影}
         \SubSubItem{能夠決定受力位置，模擬物體被推或拉一定的力量}
     \SubItem{AmbientLightComponent}
         \SubSubItem{環境光照效果，能夠讓整個遊戲的可見度受此元件影響}
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{工具欄 ToolBar}
 
 \begin{figure}[h]
-    \begin{center}
-    \includegraphics[width=0.5\textwidth]{./resources/editor/toolbar.png}
-    \end{center}
-\caption{工具欄介面}
-\label{fig:ToolBar}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_tag.png}
+        \caption{Tag}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_transform.png}
+        \caption{Transform}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_render.png}
+        \caption{SpriteRender}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_camera.png}
+        \caption{Camera}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_script.png}
+        \caption{NativeScript}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_particle.png}
+        \caption{Particle}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_rigidbody2D.png}
+        \caption{RigidBody2D}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_boxCollider2D.png}
+        \caption{BoxCollider2D}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_joint2D.png}
+        \caption{Joint2D}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_light.png}
+        \caption{Light}
+        \end{center}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\linewidth}
+        \begin{center}
+        \includegraphics[width=\linewidth]{./resources/editor/ins_ambient.png}
+        \caption{AmbientLight}
+        \end{center}
+    \end{subfigure}
+\caption{引擎實體檢視介面}
+\label{fig:Inspector}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsubsection{工具欄 ToolBar}
 
 \begin{itemize}
 \item{Start}
@@ -141,16 +207,16 @@
     \SubItem{Gizmo 切換成旋轉模式}
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{場景視窗 Scene View}
-
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=0.6\linewidth]{./resources/editor/sceneView.png}
+    \includegraphics[width=0.5\textwidth]{./resources/editor/toolbar.png}
     \end{center}
-\caption{Scene View}
-\label{sceneView}
+\caption{工具欄介面}
+\label{fig:ToolBar}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{場景視窗 Scene View}
 
 \begin{itemize}
 \item{顯示所創建的Entity}
@@ -165,6 +231,14 @@
         \SubSubItem{`Delete` 將選取的Entity刪除}
         \SubSubItem{`Esc` 取消選取Entity }   
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{./resources/editor/sceneView.png}
+    \end{center}
+\caption{Scene View}
+\label{sceneView}
+\end{figure}
 
 \begin{itemize}
 \item{Gizmo}
@@ -213,7 +287,7 @@
 
 \begin{figure}[h]
     \begin{center}
-    \includegraphics[width=0.6\linewidth]{./resources/editor/sceneView.png}
+    \includegraphics[width=0.8\linewidth]{./resources/editor/sceneView.png}
     \end{center}
 \caption{Game View}
 \label{gameView}
@@ -234,6 +308,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{除錯訊息視窗 Log}
 
 \begin{figure}[h]
@@ -263,9 +338,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{架構與未來展望}
-
-\subsubsection{架構}
+\subsection{架構}
 
 \begin{itemize}
 \item Editor
@@ -341,67 +414,67 @@
     \begin{center}
     \includegraphics[width=\textwidth]{./resources/editor/arch.png}
     \end{center}
-\caption{Editor 架構}
+\caption{Editor 架構圖}
 \label{fig:editor_arch}
 \end{figure}
 
-\subsubsection{未來展望}
+% \subsubsection{未來展望}
 
-\begin{itemize}
-\item{Undo \& Redo System}
-    \SubItem{讓使用者可以回復其所做的上一步操作}
-\item{支援3D顯示與操作}
-    \SubItem{在引擎的各項功能提供3D操作後，讓Editor亦可供其顯示與操作}
-\end{itemize}
+% \begin{itemize}
+% \item{Undo \& Redo System}
+%     \SubItem{讓使用者可以回復其所做的上一步操作}
+% \item{支援3D顯示與操作}
+%     \SubItem{在引擎的各項功能提供3D操作後，讓Editor亦可供其顯示與操作}
+% \end{itemize}
 
 
-\begin{figure}[h]
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_tag.png}
-        \caption{TagComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_transform.png}
-        \caption{TransformComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_render.png}
-        \caption{SpriteRenderComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_camera.png}
-        \caption{CameraComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_script.png}
-        \caption{NativeScriptComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_particle.png}
-        \caption{ParticleComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_rigidbody2D.png}
-        \caption{RigidBody2DComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_boxCollider2D.png}
-        \caption{BoxCollider2DComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_joint2D.png}
-        \caption{Joint2DComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_light.png}
-        \caption{LightComponent}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=0.5\linewidth]{./resources/editor/ins_ambient.png}
-        \caption{AmbientLightComponent}
-    \end{subfigure}
-\caption{引擎實體檢視介面}
-\label{fig:Inspector}
-\end{figure}
+% \begin{figure}[h]
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_tag.png}
+%         \caption{TagComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_transform.png}
+%         \caption{TransformComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_render.png}
+%         \caption{SpriteRenderComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_camera.png}
+%         \caption{CameraComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_script.png}
+%         \caption{NativeScriptComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_particle.png}
+%         \caption{ParticleComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_rigidbody2D.png}
+%         \caption{RigidBody2DComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_boxCollider2D.png}
+%         \caption{BoxCollider2DComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_joint2D.png}
+%         \caption{Joint2DComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_light.png}
+%         \caption{LightComponent}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.5\linewidth}
+%         \includegraphics[width=0.5\linewidth]{./resources/editor/ins_ambient.png}
+%         \caption{AmbientLightComponent}
+%     \end{subfigure}
+% \caption{引擎實體檢視介面}
+% \label{fig:Inspector}
+% \end{figure}
 
 \newpage

@@ -15,7 +15,7 @@
     \begin{center}
         \includegraphics[width=0.65\textwidth]{./resources/ecs/inherit.png}
     \end{center}
-\caption*{繼承圖，取自 Game Programming Patterns}
+\caption{繼承圖，取自 Game Programming Patterns}
 \label{fig:inherit}
 \end{figure}
 
@@ -58,7 +58,7 @@ while(running) {
     \begin{center}
         \includegraphics[width=0.5\textwidth]{./resources/ecs/componentPattern.png}
     \end{center}
-\caption{組件圖}
+\caption{組件示意圖}
 \label{fig:component}
 \end{figure}
 
@@ -221,6 +221,8 @@ Entity->Index & 0:0 &&&&& \\
 Index->Entity & 0:0 &&&&& \\
 Size & 1       &&&&& \\
 \end{tabular}
+
+\newpage
 
 3. 接著加入B
 
@@ -495,6 +497,7 @@ private:
 
 擁有管理Entity的Entity Manager、管理Component的Component Manager以及管理System的System Manager之後，最後就是將三個Manager封裝起來。
 
+\newpage
 \begin{lstlisting}
 class ECS {
 public:
@@ -569,6 +572,8 @@ void ECS::destroyEntity(Entity entity) {
 }
 \end{lstlisting}
 
+\newpage
+
 \paragraph{使用方法}
 
 假設擁有有三個Component，儲存角色資訊的 Transform 、儲存物理資訊的 RigidBody、以及儲存圖像的 Graphic。
@@ -609,6 +614,8 @@ void GraphicSystem::render() {
 }
 \end{lstlisting}
 
+\newpage
+
 實作 PhysicSystem ，處理物理模擬方面的邏輯。
 
 \begin{lstlisting}
@@ -633,7 +640,6 @@ void PhysicSystem::update(float dt) {
 
 \begin{lstlisting}
 ECS::ECS ecs;
-
 ecs.init();
 ecs.registerComponent<ECS::Transform>();
 ecs.registerComponent<ECS::RigidBody>();
@@ -677,4 +683,3 @@ for(auto& entity: entites) {
 }
 \end{lstlisting}
 
-\newpage

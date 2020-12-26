@@ -7,7 +7,7 @@
 
 \subsubsection{效果}
 
-而光一般會有以下三種效果
+光一般會有以下三種效果
 
 \begin{itemize}
 \item{光衰減}
@@ -56,6 +56,7 @@ void main()
 \label{fig:attenuation}
 \end{figure}
 
+\newpage
 獲取當前窗口所有座標，接著將傳入的lightPosition與每個pixel與光源計算距離，若距離大於所設定之影響半徑則丟棄，之後帶入光衰減函數去計算。
 
 \begin{equation} F_{att} = \frac{1.0}{K + D * \frac{1.0}{S}} \end{equation}
@@ -118,6 +119,7 @@ void main()
         \includegraphics[width=\linewidth]{./resources/2D-Lighting/Ambient.png}
         \caption{Ambient}
     \end{subfigure}
+\caption{照亮世界}
 \label{fig:Light}
 \end{figure}
 
@@ -129,15 +131,9 @@ void main()
 
 光線照射到物體上，物體背後會產生陰影。
 
-我們有光源位置以及兩個點(P1, P2)，我們就能夠畫出陰影。點P1，P2所連成的直線背後是不可視的，因此要在後面畫上陰影(黑色)。我們取得P1以及P2的座標，利用向量計算光源到點p1的延伸點P3，以及光源到點P2的延伸點p4，用這四個點所圍成的四邊形即是陰影的部分。
+我們有光源位置以及兩個點($P_1$, $P_2$)，我們就能夠畫出陰影。點$P_1$，$P_2$所連成的直線背後是不可視的，因此要在後面畫上陰影(黑色)。我們取得$P_1$以及$P_2$的座標，利用向量計算光源到點$P_1$的延伸點$P_3$，以及光源到點$P2$的延伸點$P4$，用這四個點所圍成的四邊形即是陰影的部分。
 
 運用這個道理，我們就能夠將世界物體的陰影給畫出來。在我們的引擎裡面，物體都是四邊形的。我們能夠輕易地找到座標畫出陰影。
-
-若光源與P3 P4以及P2 P3畫陰影，會發生陰影蓋住物體的情況發生，因此需要找到距離光源較遠的邊。我們可以利用光到點的向量以及每條邊的法向量來幫助我們。
-
-利用四個點我們能得到v1 v2 v3 v4四條向量，而我們分別找出這四條向量的法向量n1 n2 n3 n4，利用這四條法向量，與光源到點的向量座內積，如果大於零，方向基本相同，夾角在0°到90°之間則取兩點畫上陰影。
-
-光與點P1所形成的向量與法向量n1做內積，小於0，則利用光源與點p1、p2做陰影。接著利用光與點p2所形成的向量語法向量n2做內積，以此類推。
 
 \begin{figure}[h]
     \begin{subfigure}[b]{0.5\linewidth}
@@ -148,6 +144,25 @@ void main()
     \end{subfigure}
 \caption{對物體畫出陰影}
 \label{fig:DrawShadow}
+\end{figure}
+
+若光源與$P_3$, $P_4$以及$P_2$, $P_3$畫陰影，會發生陰影蓋住物體的情況發生，因此需要找到距離光源較遠的邊。我們可以利用光到點的向量以及每條邊的法向量來幫助我們。
+
+利用四個點我們能得到$v_1$, $v_2$, $v_3$, $v_4$ 四條向量，而我們分別找出這四條向量的法向量 $n_1$, $n_2$, $n_3$, $n_4$ 利用這四條法向量，與光源到點的向量座內積，如果大於零，方向基本相同，夾角在0°到90°之間則取兩點畫上陰影。
+
+光與點 $P_1$ 所形成的向量與法向量 $n_1$ 做內積，小於0，則利用光源與點 $p_1$, $p_2$ 做陰影。接著利用光與點 $p_2$ 所形成的向量語法向量 $n_2$ 做內積，以此類推。
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.5\linewidth}
+        \includegraphics[width=\linewidth]{./resources/2D-Lighting/DrawShadow3.png} 
+        \caption{判斷哪個邊要畫陰影}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \includegraphics[width=\linewidth]{./resources/2D-Lighting/Ray-Cast.png} 
+        \caption{Ray-Casting}
+    \end{subfigure}
+\caption{Ray-Casting}
+\label{fig:RayCasting}
 \end{figure}
 
 \begin{lstlisting}
@@ -183,29 +198,16 @@ for(auto light : allLight)
 }
 \end{lstlisting}
 
-\begin{figure}[h]
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=\linewidth]{./resources/2D-Lighting/DrawShadow3.png} 
-        \caption{判斷哪個邊要畫陰影}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
-        \includegraphics[width=\linewidth]{./resources/2D-Lighting/Ray-Cast.png} 
-        \caption{Ray-Casting}
-    \end{subfigure}
-\label{fig:RayCasting}
-\end{figure}
-
 \subsubsection{結論}
 
 擁有光之後，就能夠讓遊戲畫面更加的豐富，我們能夠調動世界的光暗，讓世界是暗的，只有擁有光源的地方能夠產生亮光。
 
-\subsubsection{未來展望}
+% \subsubsection{未來展望}
 
-\begin{itemize}
-\item{提供更多的光}
-    \SubItem{目前只提供點光源}
-\item{進入3D}
-    \SubItem{將光照系統新增提供3D環境的光照}
-\end{itemize}
+% \begin{itemize}
+% \item{提供更多的光}
+%     \SubItem{目前只提供點光源}
+% \item{進入3D}
+%     \SubItem{將光照系統新增提供3D環境的光照}
+% \end{itemize}
 
-\newpage
