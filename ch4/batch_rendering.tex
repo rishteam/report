@@ -128,42 +128,42 @@ struct QuadRenderer
 \lstinline{init()} 負責初始化 Renderer 的狀態以及準備 VBO, IBO 和 Shader 的初始化，Renderer 初始化結束後，
 便可以開始提交頂點到 Renderer 上，\lstinline{submit()} 可以提交要畫的頂點，接著 \lstinline{draw()} 在每個 Batch 的最後將頂點渲染，結束這一次的渲染。
 
-\subsubsection{結論}
+% \subsubsection{結論}
 
-加入 Batch Rendering 後，RishEngine 的 Renderer 獲得了顯著的提升:
+% 加入 Batch Rendering 後，RishEngine 的 Renderer 獲得了顯著的提升:
 
-\begin{table}[h]
-\centering
-    \begin{tabular}{@{} *{5}{c} @{}}
-    \headercell{Number of \\ Sprites} & \multicolumn{4}{c@{}}{Modes}\\
-    \cmidrule(l){2-5}
-    & Debug Non-batch & Release Non-batch & Debug Batch & Release Batch    \\ 
-    \midrule
-    100    & 1000 &  1055   &  1900 &  2789 \\
-    1000   & 167  &  158    &  568  &  1379 \\
-    10000  & 18   &  17     &  82   &  247  \\
-    100000 & < 1    &  < 1  &  9    &  28   \\
-    \end{tabular}
-\caption{不同 Rendering 方法下 FPS 差別}
-\label{tab:abc}
-\end{table}
+% \begin{table}[h]
+% \centering
+%     \begin{tabular}{@{} *{5}{c} @{}}
+%     \headercell{Number of \\ Sprites} & \multicolumn{4}{c@{}}{Modes}\\
+%     \cmidrule(l){2-5}
+%     & Debug Non-batch & Release Non-batch & Debug Batch & Release Batch    \\ 
+%     \midrule
+%     100    & 1000 &  1055   &  1900 &  2789 \\
+%     1000   & 167  &  158    &  568  &  1379 \\
+%     10000  & 18   &  17     &  82   &  247  \\
+%     100000 & < 1    &  < 1  &  9    &  28   \\
+%     \end{tabular}
+% \caption{不同 Rendering 方法下 FPS 差別}
+% \label{tab:abc}
+% \end{table}
 
-可以發現到:加入 Batch Rendering 後，Renderer 的效率獲得了巨大的提升，在小規模數量的 Sprites 時，FPS 的增加相當可觀；但數量一大起來時，增加的幅度就變小了，由此可知在數量大時渲染瓶頸在其他地方。
+% 可以發現到:加入 Batch Rendering 後，Renderer 的效率獲得了巨大的提升，在小規模數量的 Sprites 時，FPS 的增加相當可觀；但數量一大起來時，增加的幅度就變小了，由此可知在數量大時渲染瓶頸在其他地方。
 
-\begin{figure}[h]
-    \begin{subfigure}{0.5\textwidth}
-        \includegraphics[width=0.9\linewidth, height=5cm]{./resources/batch_compare.png} 
-        \caption{不同 Rendering 方法}
-        \label{fig:subim1}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \includegraphics[width=0.9\linewidth, height=5cm]{./resources/max_index.png}
-        \caption{不同 Max Index}
-        \label{fig:subim2}
-    \end{subfigure}
-\caption{不同 Rendering 方法效能比較}
-\label{fig:image2}
-\end{figure}
+% \begin{figure}[h]
+%     \begin{subfigure}{0.5\textwidth}
+%         \includegraphics[width=0.9\linewidth, height=5cm]{./resources/batch_compare.png} 
+%         \caption{不同 Rendering 方法}
+%         \label{fig:subim1}
+%     \end{subfigure}
+%     \begin{subfigure}{0.5\textwidth}
+%         \includegraphics[width=0.9\linewidth, height=5cm]{./resources/max_index.png}
+%         \caption{不同 Max Index}
+%         \label{fig:subim2}
+%     \end{subfigure}
+% \caption{不同 Rendering 方法效能比較}
+% \label{fig:image2}
+% \end{figure}
 
 % 說明文字說明文字說明文字說明文字說明文字說明文字說明文字
 
